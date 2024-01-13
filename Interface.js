@@ -1,4 +1,3 @@
-
 // Initial setup. 
 $(document).ready(()=>{
     $('.app-option')[0].click();
@@ -14,51 +13,79 @@ $('#app-option-buttons-container > button').on('click', (event)=>{
 })
 
 // Search screen ____________________________________________________________
-$('#app-screen-search').html(`
-    <div id='search-screen-categories'>
-        <h3>
-            Categories
-        </h3>
-        <h4>Diet</h4>
-        <button value='vegan_diet'>Vegan</button>
-        <button value='vegetarian_diet'>Vegetarian</button>
-        <button value='ketogenic_diet' class='selected'>Ketogenic</button>
-        <button value='paleo_diet'>Paleo</button>
+$('.category-compact-button').on('click', (event)=>{
+    let isCompact = event.currentTarget.value;
+    let arrayButtons = event.currentTarget.parentNode.querySelector('.category-buttons-array').children;
+    if(isCompact == 'false'){
+        event.currentTarget.value = 'true';
+        for(let i = 0; i < arrayButtons.length; i++){
+            $(arrayButtons[i]).css({
+                display: 'none'
+            })
+        }
+    }
+    else{
+        event.currentTarget.value = 'false';
+        for(let i = 0; i < arrayButtons.length; i++){
+            $(arrayButtons[i]).css({
+                display: 'block'
+            })
+        }
+    }
+})
 
-        <h4>Allergens</h4>
-        <button value='dairy_allergy'>Dairy</button>
-        <button value='gluten_allergy'>Gluten</button>
-        <button value='selfish_allergy'>Selfish</button>
-        <button value='nut_allergy'>Nut</button>
+let smallMode = 1;
+let prevWidth = null;
+$(document).ready(()=>{
+    // Initially set inner width
+    prevWidth = window.innerWidth;
 
-        <h4>Cuisines</h4>
-        <button value='asian_cuisine'>Asian</button>
-        <button value='italian_cuisine'>Italian</button>
-        <button value='indian_cuisine'>Indian</button>
-        <button value='french_cuisine'>French</button>
-        
-        <h4>Goals</h4>
-        <button value='weight_goal'>Weight Loss</button>
-        <button value='freshness_goal'>Freshness</button>
-        <button value='nutrition_goal'>Nutrition</button>
+    if(window.innerWidth >= 800){
+        compactAll(false)
+    }
+    else{
+        compactAll(true)
+    }
+})
 
-    </div>
-    <div id='search-screen-search-bar'>
-        <h3>
-            Recipes
-        </h3>
-        <form id='search-bar-form'>
-            <input id='search-bar-input' type='text' placeholder='Search'>
-            <button id='search-bar-button'>
-                <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140.37 159.56">
-                    <path d="M476.93,4693.6c-4.4-5.09-21.33-19.83-35.39-28.74a58.42,58.42,0,1,0-16.49,11.64c6.6,15.47,19.64,35.74,24.23,41.05,7.11,8.21,19.07,9.5,26.7,2.89S484,4701.81,476.93,4693.6Zm-115.88-70a39.08,39.08,0,1,1,39.08,39.08A39.12,39.12,0,0,1,361.05,4623.59Z" transform="translate(-341.63 -4565.1)"/>
-                </svg>            
-            </button>
-        </form>
-    </div>
-    <div id='search-screen-search-recipes'>
-    </div>
-`)
+$(window).resize(()=>{
+    if(window.innerWidth > prevWidth){
+        // Enlarging screen
+        prevWidth = window.innerWidth;
+        if(window.innerWidth >= 800 && smallMode){
+            // Enlarging while in small mode
+            smallMode = 0;
+            compactAll(false)
+        }
+    }
+    else{
+        // Shrinking screen
+        prevWidth = window.innerWidth;
+        if(window.innerWidth < 800 && !smallMode){
+            // Shrinking while in large mode
+            smallMode = 1;
+            compactAll(true)
+        }
+    }
+})
+
+function compactAll(compact){
+    // If the UI wants to compact all category options in the Explore Recipes screen
+    let buttons = $('.category-compact-button');
+    for(let i = 0; i < buttons.length; i++){
+        if(compact && buttons[i].value == 'false' || !compact && buttons[i].value == 'true'){
+            buttons[i].click()
+        }
+    }
+}
+
+$('.search_category').on('click', (event)=>{
+    $('.search_category').removeClass('selected');
+    $(event.target).addClass('selected');
+
+
+})
+
 $('#search-bar-button').on('mouseover', ()=>{
     $('#Layer_1').css('animation', 'search-button-hovered .4s forwards')
 })
@@ -66,7 +93,7 @@ $('#search-bar-button').on('mouseleave', ()=>{
     $('#Layer_1').css('animation', '')
 })
 
-$('#search-bar-form').on('submit', (event)=>{
+$('#search-bar-form').on('submit', async (event)=>{
     
     // Remove New Input Styling
     $('#search-bar-form').removeClass('new-input-style');
@@ -74,18 +101,30 @@ $('#search-bar-form').on('submit', (event)=>{
     
     event.preventDefault();
 
-    var $searchInput = $('#search-bar-input').val();
-    
-    let results = searchRecipe($searchInput);
+    // Send user Input to async search recipe function (which sends query to API)
+    let data = JSON.parse(await searchRecipe($('#search-bar-input').val()));
+ 
+    let recipes = data.hits.map(dataItem =>{
+        let recipe = dataItem.recipe;
+        return (
+            `<div class='recipe-container'>
+                <img class='recipe-image' src='${recipe.image}'/>
+                <div class='recipe-label'>${recipe.label}</div>
+                <div class='recipe-ingredient-list'>
+                    ${ recipe.ingredientLines.map(ingredient => `<div class='recipe-ingredient'>${ingredient}</div>`).join('') }
+                </div>
+            </div>`
+        )
+    });
+    $('#search-screen-search-recipes').html(recipes);
+});
 
-    // searchRecipe()
-})
 $('#search-bar-input').on('keydown', ()=>{
 
     // Add New Input Styling
     $('#search-bar-form').addClass('new-input-style');
     $('#Layer_1').addClass('new-input-style');
-  
+
 })
 // Fridge screen ____________________________________________________________
 // Shop screen ______________________________________________________________

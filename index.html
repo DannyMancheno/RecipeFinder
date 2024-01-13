@@ -15,6 +15,7 @@
         <!-- StyleSheet -->
         <link rel="stylesheet" href="RecipeFinder.css">
         <!-- Scripts -->
+        <script src="./data.js" defer type="text/javascript"></script>
         <script src="./RecipeFinder.js" defer type="text/javascript"></script>
         <script src="./Interface.js" defer type="text/javascript"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -28,16 +29,85 @@
             <div id="app-options">
                 <img src="IMGs/BannerPhoto.jpg" id="option-banner">
                 <div id="app-option-buttons-container">
-                    <button class="app-option" value="search">Find Recipes</button>
+                    <button class="app-option" value="search">Explore Recipes</button>
                     <button class="app-option" value="fridge">Search Fridge</button>
                     <button class="app-option" value="shop">Shopping List</button>
                 </div>
             </div>
             <div id="app-screens">
-                <div id="app-screen-search" class="app-screen">search</div>
+                <div id="app-screen-search" class="app-screen">
+                    <div id='search-screen-categories'>
+                        <h3>
+                            Categories
+                        </h3>
+                        <div class='category-type-container' >
+                            <button class='category-compact-button' value="false">
+                                <span>Diet</span>
+                                <img src='./IMGs/DownArrow.svg'>
+                            </button>
+                            <div class='category-buttons-array'>
+                                <button value='vegetarian_diet' class='search_category'>Vegetarian</button>
+                                <button value='kosher_diet' class='search_category'>Kosher</button>
+                                <button value='ketogenic_diet' class='search_category'>Ketogenic</button>
+                                <button value='paleo_diet' class='search_category'>Paleo</button>
+                            </div>
+                        </div>
+                        <div class='category-type-container'>
+                            <button class='category-compact-button' value='false'>
+                                <span>Allergens</span>
+                                <img src='./IMGs/DownArrow.svg'>
+                            </button>
+                            <div class='category-buttons-array'>
+                                <button value='dairy_allergy' class='search_category'>Dairy</button>
+                                <button value='gluten_allergy' class='search_category'>Gluten</button>
+                                <button value='selfish_allergy' class='search_category'>Selfish</button>
+                                <button value='nut_allergy' class='search_category'>Nut</button>
+                            </div>
+                        </div>
+                        <div class='category-type-container'>
+                            <button class='category-compact-button' value='false'>
+                                <span>Cuisines</span>
+                                <img src='./IMGs/DownArrow.svg'>
+                            </button>
+                            <div class='category-buttons-array'>
+                                <button value='asian_cuisine' class='search_category'>Asian</button>
+                                <button value='italian_cuisine' class='search_category' >Italian</button>
+                                <button value='indian_cuisine' class='search_category'>Indian</button>
+                                <button value='french_cuisine' class='search_category'>French</button>
+                            </div>
+                        </div>
+                        <div class='category-type-container' >
+                            <button class='category-compact-button' value='false'>
+                                <span>Goals</span>
+                                <img src='./IMGs/DownArrow.svg'>
+                            </button>
+                            <div class='category-buttons-array'>
+                                <button value='weight_goal' class='search_category'>Weight Loss</button>
+                                <button value='freshness_goal' class='search_category'>Freshness</button>
+                                <button value='nutrition_goal' class='search_category'>Nutrition</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id='search-screen-search-bar'>
+                        <h3>
+                            Recipes
+                        </h3>
+                        <form id='search-bar-form'>
+                            <input id='search-bar-input' type='text' placeholder='Search'>
+                            <button id='search-bar-button'>
+                                <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140.37 159.56">
+                                    <path d="M476.93,4693.6c-4.4-5.09-21.33-19.83-35.39-28.74a58.42,58.42,0,1,0-16.49,11.64c6.6,15.47,19.64,35.74,24.23,41.05,7.11,8.21,19.07,9.5,26.7,2.89S484,4701.81,476.93,4693.6Zm-115.88-70a39.08,39.08,0,1,1,39.08,39.08A39.12,39.12,0,0,1,361.05,4623.59Z" transform="translate(-341.63 -4565.1)"/>
+                                </svg>            
+                            </button>
+                        </form>
+                    </div>
+                    <div id='search-screen-search-recipes'>
+                    </div>
+                </div>
                 <div id="app-screen-fridge" class="app-screen">fridge</div>
                 <div id="app-screen-shop" class="app-screen">shop</div>
             </div>
+            
         </div>
     </body>
 </html>
