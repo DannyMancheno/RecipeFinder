@@ -39,9 +39,11 @@ body{
             #option-banner{
                 width: 100%;
                 max-height: 260px;
+                object-position: 0 25%;
                 object-fit: cover;
-                border-radius: 10px;
+                // border: solid 1px red;
             }
+            // border: solid 2px blue;
             #app-option-buttons-container{
                 margin: 15px 0px;
                 padding: 10px 0px;
@@ -93,50 +95,7 @@ body{
                     }
                 }
                 #search-screen-search-bar{
-                    #search-bar-form{
-                        display: grid;
-                        align-items: center;
-                        grid-template-columns: auto max-content;
-                        border: solid 2px var(--grey_color2);
-                        padding: 0px 0px 0px 10px;
-                        border-radius: 25px;
-                        margin-top: 10px;
-                        input{
-                            border: none;
-                            font-size: 16px;
-                            &:focus{
-                                outline: none;
-                            }
-                        }
-                        button{
-                            display: flex;
-                            border: none;
-                            box-shadow: 0 0 3px 1px var(--grey_color2) inset;
-                            padding: 3px 15px;
-                            border-radius: 25px;
-                            cursor: pointer;
-                            #Layer_1{
-                                width: 22px;
-                                height: 22px;
-                                fill: var(--grey_color1);
-                            }
-                            #Layer_1.new-input-style{
-                                fill: var(--green_color1);
-                            }
-                            
-                            @keyframes search-button-hovered{
-                                from{
-                                    fill: var(--grey_color1);
-                                }
-                                to{
-                                    fill: var(--green_color1);
-                                }
-                            }
-                        }
-                    }
-                    #search-bar-form.new-input-style{
-                        border: solid 2px var(--green_color1);
-                    }
+                    
                 }
                 #search-screen-search-recipes{
                     display: grid;
@@ -146,7 +105,12 @@ body{
                         flex-direction: column;
                         max-width: 300px;
                         margin: 5px;
+                        border: solid 1px var(--grey_color2);
+                        padding: 8px;
+                        background: rgb(242, 242, 242);
+                        border-radius: 10px;
                         .recipe-image{
+                            border-radius: 6px;
                             max-height: 200px;
                             object-fit: cover;
                         }
@@ -225,6 +189,52 @@ body{
             
         }
     }
+}
+
+.form-bar{
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto max-content;
+    border: solid 2px var(--grey_color2);
+    padding: 0px 0px 0px 10px;
+    border-radius: 25px;
+    margin-top: 10px;
+    .form-bar-input{
+        border: none;
+        font-size: 16px;
+        &:focus{
+            outline: none;
+        }
+    }
+    .form-bar-submit{
+        display: flex;
+        border: none;
+        box-shadow: 0 0 3px 1px var(--grey_color2) inset;
+        padding: 3px 15px;
+        border-radius: 25px;
+        cursor: pointer;
+        #Layer_1{
+            width: 22px;
+            height: 22px;
+            fill: var(--grey_color1);
+        }
+        #Layer_1.new-input-style{
+            border: none;
+            fill: var(--green_color1);
+        }
+        
+        @keyframes search-button-hovered{
+            from{
+                fill: var(--grey_color1);
+            }
+            to{
+                fill: var(--green_color1);
+            }
+        }
+    }
+}
+.new-input-style{
+    border: solid 2px var(--green_color1);
 }
 
 @media (min-width: 700px){
