@@ -21,23 +21,23 @@ body #app-container #app-header {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 10px;
 }
 body #app-container #app-header #header-logo {
-  width: 54px;
-  height: 54px;
+  width: 44px;
+  height: 44px;
 }
 body #app-container #app-header #header-title {
   color: var(--grey_color1);
-  font-size: 34px;
+  font-size: 30px;
   margin-left: 20px;
   font-weight: 700;
 }
 body #app-container #app-options #option-banner {
   width: 100%;
-  max-height: 260px;
-  -o-object-position: 0 25%;
-     object-position: 0 25%;
+  height: 260px;
+  -o-object-position: 100% 25%;
+     object-position: 100% 25%;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -201,12 +201,12 @@ body #app-container #app-screens #app-screen-search #search-screen-categories bu
   border-radius: 25px;
   cursor: pointer;
 }
-.form-bar .form-bar-submit #Layer_1 {
+.form-bar .form-bar-submit .form-bar-button-image {
   width: 22px;
   height: 22px;
   fill: var(--grey_color1);
 }
-.form-bar .form-bar-submit #Layer_1.new-input-style {
+.form-bar .form-bar-submit .new-input-style {
   border: none;
   fill: var(--green_color1);
 }

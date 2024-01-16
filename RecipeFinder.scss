@@ -23,14 +23,14 @@ body{
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 10px;
             #header-logo{
-                width: 54px;
-                height: 54px;
+                width: 44px;
+                height: 44px;
             }
             #header-title{
                 color: var(--grey_color1);
-                font-size: 34px;
+                font-size: 30px;
                 margin-left: 20px;
                 font-weight: 700;
             }
@@ -38,10 +38,9 @@ body{
         #app-options{
             #option-banner{
                 width: 100%;
-                max-height: 260px;
-                object-position: 0 25%;
+                height: 260px;
+                object-position: 100% 25%;
                 object-fit: cover;
-                // border: solid 1px red;
             }
             // border: solid 2px blue;
             #app-option-buttons-container{
@@ -93,9 +92,6 @@ body{
                         text-align: center;   
                         color: var(--green_color1);
                     }
-                }
-                #search-screen-search-bar{
-                    
                 }
                 #search-screen-search-recipes{
                     display: grid;
@@ -213,12 +209,12 @@ body{
         padding: 3px 15px;
         border-radius: 25px;
         cursor: pointer;
-        #Layer_1{
+        .form-bar-button-image{
             width: 22px;
             height: 22px;
             fill: var(--grey_color1);
         }
-        #Layer_1.new-input-style{
+        .new-input-style{
             border: none;
             fill: var(--green_color1);
         }
@@ -284,5 +280,14 @@ body{
     .category-buttons-array{
         display: grid;
         grid-template-columns: 25% 25% 25% 25%;
+    }
+}
+
+// FRIDGE
+
+#app-screen-fridge{
+
+    #fridge-screen-tag-bar{
+        
     }
 }

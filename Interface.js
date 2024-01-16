@@ -101,16 +101,16 @@ $('.search_category').on('click', (event)=>{
 })
 
 $('#search-bar-button').on('mouseover', ()=>{
-    $('#Layer_1').css('animation', 'search-button-hovered .4s forwards')
+    $('#search-bar-button-image').css('animation', 'search-button-hovered .4s forwards')
 })
 $('#search-bar-button').on('mouseleave', ()=>{
-    $('#Layer_1').css('animation', '')
+    $('#search-bar-button-image').css('animation', '')
 })
 
 $('#search-bar-form').on('submit', (event)=>{
     // Remove New Input Styling
     $('#search-bar-form').removeClass('new-input-style');
-    $('#Layer_1').removeClass('new-input-style');
+    $('#search-bar-button-image').removeClass('new-input-style');
     event.preventDefault();
     submitRecipeQuery()
 });
@@ -136,12 +136,23 @@ async function submitRecipeQuery(random = false){
 
 
 $('#search-bar-input').on('keydown', ()=>{
-
     // Add New Input Styling
     $('#search-bar-form').addClass('new-input-style');
-    $('#Layer_1').addClass('new-input-style');
-
+    $('#search-bar-button-image').addClass('new-input-style');
 })
 // Fridge screen ____________________________________________________________
+
+$('#tag-bar-input').on('keydown', ()=>{
+    // Add new styling
+    $('#tag-bar-form').addClass('new-input-style');
+    $('#tag-bar-button-image').addClass('new-input-style');
+})
+$('#tag-bar-form').on('submit', (event)=>{
+    event.preventDefault();
+    $('#tag-bar-form').removeClass('new-input-style');
+    $('#tag-bar-button-image').removeClass('new-input-style');
+    
+    $('#tag-bar-input').val(``);
+})
 
 // Shop screen ______________________________________________________________
