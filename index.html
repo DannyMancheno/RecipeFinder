@@ -30,7 +30,7 @@
             <div id="app-options">
                 <img src="IMGs/Search.png" id="option-banner">
                 <div id="app-option-buttons-container">
-                    <button class="app-option selected" value="search">Explore Recipes</button>
+                    <button class="app-option" value="search">Explore Recipes</button>
                     <button class="app-option" value="fridge">Search Fridge</button>
                     <button class="app-option" value="grocery">Grocery List</button>
                 </div>
@@ -94,7 +94,7 @@
                             Recipes
                         </h3>
                         <form id='search-bar-form' class="form-bar">
-                            <input id='search-bar-input' type='text' placeholder='Search' class="form-bar-input">
+                            <input id='search-bar-input' type='text' placeholder='Search Recipes' class="form-bar-input">
                             <button id='search-bar-button' class="form-bar-submit">
                                 <svg id="search-bar-button-image" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140.37 159.56" class="form-bar-button-image">
                                     <path d="M476.93,4693.6c-4.4-5.09-21.33-19.83-35.39-28.74a58.42,58.42,0,1,0-16.49,11.64c6.6,15.47,19.64,35.74,24.23,41.05,7.11,8.21,19.07,9.5,26.7,2.89S484,4701.81,476.93,4693.6Zm-115.88-70a39.08,39.08,0,1,1,39.08,39.08A39.12,39.12,0,0,1,361.05,4623.59Z" transform="translate(-341.63 -4565.1)"/>
@@ -105,19 +105,35 @@
                     <div id='search-screen-search-recipes'></div>
                 </div>
                 <div id="app-screen-fridge" class="app-screen">
+                    <h3>
+                        Fridge
+                        <div id="fridge-screen-total"></div>
+                    </h3>
                     <div id="fridge-screen-tag-bar" >
                         <form id="tag-bar-form" class="form-bar">
                             <input id="tag-bar-input" type="text" placeholder="Add Ingredient" class="form-bar-input">
                             <button id="tag-bar-button" class="form-bar-submit">
                                 <svg id="tag-bar-button-image" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 152.6 152.6"  class="form-bar-button-image">
                                     <path d="M711.18,3789.25H665.82v-45.08a15.47,15.47,0,0,0-30.94,0v45.08H589.52a15.47,15.47,0,0,0-15.47,15.46h0a15.47,15.47,0,0,0,15.47,15.47h45.36v45.65a15.47,15.47,0,0,0,30.94,0v-45.65h45.36a15.47,15.47,0,0,0,15.47-15.47h0A15.47,15.47,0,0,0,711.18,3789.25Z" transform="translate(-574.05 -3728.7)"/>
-                                </svg>      
+                                </svg>
                             </button>
                         </form>
                     </div>
-                    <h3 class="fridge-screne">
-                        Fridge
-                    </h3>
+                    <div id='fridge-ingredient-container'></div>
+                    <div id="fridge-cooking-container">
+                        <h3>
+                            Cook
+                            <div id="ingredient-cook-total"></div>
+                        </h3>
+                        <div id="fridge-cooking-list"></div>
+                        <button id="fridge-explore-ingredients-button">
+                            Explore Selected
+                        </button>
+                        <div id="fridge-cooking-recipes-list">
+                            
+                        </div>
+                    </div>
+                    
                 </div>
                 <div id="app-screen-grocery" class="app-screen">Grocery</div>
             </div>

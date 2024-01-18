@@ -1,6 +1,11 @@
 :root{
-    
+    --red_color1: rgb(162, 68, 68);
+
+    --orange_color1: rgb(203, 132, 0);
+    --orange_color2: rgb(255, 248, 234);
+
     --green_color1: rgb(34, 145, 38);
+    --green_color2: rgb(245, 252, 246);
 
     --grey_color1: rgb(70, 70, 70);
     --grey_color2: rgb(211, 211, 211);
@@ -96,35 +101,11 @@ body{
                 #search-screen-search-recipes{
                     display: grid;
                     justify-content: space-evenly;
-                    .recipe-container{
-                        display: flex;
-                        flex-direction: column;
-                        max-width: 300px;
-                        margin: 5px;
-                        border: solid 1px var(--grey_color2);
-                        padding: 8px;
-                        background: rgb(242, 242, 242);
-                        border-radius: 10px;
-                        .recipe-image{
-                            border-radius: 6px;
-                            max-height: 200px;
-                            object-fit: cover;
-                        }
-                        .recipe-label{
-                            color: var(--green_color1);
-                            font-size: 20px;
-                            padding: 10px 0px;
-                        }
-                        .recipe-ingredient-list{
-                            display: flex;
-                            flex-direction: column;
-                        }
-                    }
-                    
                 }
                 
                 #search-screen-categories{
                     .category-type-container{
+                        padding-bottom: none !important;
                         padding: none;
                         button.category-compact-button{
                             display: flex;
@@ -237,6 +218,9 @@ body{
     #search-screen-search-recipes{
         grid-template-columns: auto auto;
     }
+    #fridge-cooking-recipes-list{
+        grid-template-columns: auto auto;
+    }
 }
 @media (min-width: 800px){
     #search-screen-categories{
@@ -246,6 +230,7 @@ body{
         grid-row: 1/3;
         margin-right: 30px;
         .category-type-container{
+            padding-bottom: 0px;
             .category-compact-button{
                 pointer-events: none;
                 img{
@@ -269,6 +254,9 @@ body{
     #search-screen-search-recipes{
         grid-template-columns: auto auto auto;
     }
+    #fridge-cooking-recipes-list{
+        grid-template-columns: auto auto auto;
+    }
 }
 @media (min-width: 400px) and (max-width: 599px){
     .category-buttons-array{
@@ -284,10 +272,294 @@ body{
 }
 
 // FRIDGE
-
+#app-container{
+    min-height: 1000px;
+}
 #app-screen-fridge{
-
-    #fridge-screen-tag-bar{
-        
+    h3{
+        margin-bottom: 10px;
+        font-size: 27px;
+        font-weight: 400;
+        text-align: center;   
+        color: var(--green_color1);
+        #fridge-screen-total{
+            font-size: 12px;
+            color: var(--grey_color1);
+        }
     }
+    #tag-bar-form{
+        margin-bottom: 10px;
+    }
+    #fridge-ingredient-container{
+        .fridge-ingredient{
+            border-bottom: solid 1px var(--grey_color1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0px;
+            // Base Igredient Style (available)
+            .fridge-ingredient-name{
+                width: 100%;
+                .fridge-ingredient-name-input{
+                    font-size: 18px;
+                    border: none;
+                    width: 100%;
+                    text-overflow: ellipsis;
+                    &:focus{
+                        outline: none;
+                        color: var(--green_color1);
+                        caret-color: black;
+                        background: var(--green_color2);
+                    }
+                }
+            }
+            // Ingredient Style when NOT available (unavailable)
+            
+            .fridge-ingredient-options{
+                display: flex;
+                align-items: center;
+                button{
+                    border: none;
+                    background: none;
+                    margin-left: 5px;
+                    fill: var(--grey_color1);
+                    cursor: pointer;
+                    &:first-child{
+                        margin-left: 0;
+                    }
+                    svg{
+                        box-sizing: border-box;
+                        width: 20px;
+                        height: 20px;
+                    }
+                    &:hover{
+                        animation: fridge-option-button-hovered 0.3s forwards;
+                    }
+                    &.delete-option:hover{
+                        animation: none;
+                        fill: var(--red_color1) !important;
+                    }
+                    
+                    @keyframes fridge-option-button-hovered{
+                        from{
+                            fill: var(--grey_color1);
+                        }
+                        to{
+                            fill: var(--green_color1);
+                        }
+                    }
+                }
+                .cooking-list{
+                    fill: var(--orange_color1);
+                }
+                .grocery-list{
+                    fill: var(--green_color1);
+                    &:hover{
+                        animation: grocery-list-decolor 0.3s forwards;
+                    }
+                    @keyframes grocery-list-decolor{
+                        from{
+                            fill: var(--green_color1);
+                        }
+                        to{
+                            fill: var(--grey_color1);
+                        }
+                    }
+                }
+                z-index: 1;
+                position: relative;
+                .ingredient-delete-options{
+                    z-index: 2;
+                    position: absolute;
+                    right: 0;
+                    box-sizing: content-box;
+                    width: 0%;
+                    display: none;
+                    grid-template-columns: 65% auto;
+                    button{
+                        padding: 10px 0px;
+                        margin: 0;
+                        color: white;
+                    }
+                    .delete{
+                        fill: white;
+                        background: rgb(240, 0, 0);
+                        &:hover{
+                            animation: none;
+                            fill: white;    
+                            background: red;
+                        }
+                    }
+                    .cancel{
+                        fill: var(--grey_color1);
+                        background: var(--grey_color2);
+                        &:hover{
+                            animation: none;
+                            fill: var(--grey_color1);
+                            background: var(--grey_color3);
+                        }
+                    }
+                }
+            }
+        }
+        .fridge-ingredient-unavailable{
+            .fridge-ingredient-name{
+                input{
+                    color: var(--red_color1);
+                }
+                opacity: 0.75;
+            }
+            .fridge-ingredient-options{
+                .fridge-option{
+                    fill: var(--red_color1);
+                }
+                .cook-option{
+                    fill: var(--red_color1);
+                    pointer-events: none;
+                }
+            }
+        }
+        margin-bottom: 10px;
+    }
+    #fridge-cooking-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h3{
+            #ingredient-cook-total{
+                font-size: 12px;
+                color: var(--grey_color1);               
+            }
+        }
+        #fridge-cooking-list{
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: center;
+            margin-bottom: 10px;
+            .cook-ingredient{
+                display: inline-block;
+                overflow-wrap: break-word;
+                word-break: break-word;
+                color: var(--orange_color1);
+                background: var(--orange_color2);
+                border-radius: 15px;
+                padding: 5px 10px;
+                margin: 0px 2px 2px 2px;
+            }
+        }
+        #fridge-explore-ingredients-button{
+            font-size: 18px;
+            padding: 5px 10px;
+            background: var(--grey_color3);
+            border: none;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            &:hover{
+                animation: animate-explore-ingredients-hovered 0.3s forwards;
+            }
+            &:active{
+                background: var(--grey_color2);
+            }
+        }
+        @keyframes animate-explore-ingredients-hovered{
+            from{
+                color: black;
+            }
+            to{
+                color: var(--orange_color1);
+            }
+        }
+        #fridge-cooking-recipes-list{
+            display: grid;
+            justify-content: space-evenly;
+            width: 100%;
+            
+        }
+    }
+}
+
+.recipe-container{
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+    margin: 5px;
+    border: solid 1px var(--grey_color2);
+    padding: 8px;
+    background: rgb(242, 242, 242);
+    border-radius: 10px;
+    .recipe-image{
+        border-radius: 6px;
+        max-height: 200px;
+        object-fit: cover;
+    }
+    .recipe-label{
+        color: var(--green_color1);
+        font-size: 20px;
+        padding: 10px 0px;
+    }
+    .recipe-info{
+        div{
+            padding-bottom: 4px !important;
+            margin-bottom: none;
+        }    
+    }
+    .recipe-ingredient-expand{
+        margin-top: auto;
+        padding: 4px;
+        border-radius: 6px;
+        border: solid 1px var(--grey_color2);
+        font-size: 16px;
+        cursor: pointer;
+        &:hover{animation: recipe-ingredients-expand-hovered .4s forwards}
+    }
+    @keyframes recipe-ingredients-expand-hovered{
+        from{
+            color: black;
+        }
+        to{
+            color: var(--green_color1);
+            background: var(--grey_color3);
+        }
+    }
+}
+
+.recipe-dialog-box{
+    z-index: 4;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0%;
+    left: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.5);
+    
+    .dialog-box-recipe-container{
+        padding: 10px;
+        border-radius: 10px;
+        background: white;
+        max-width: 600px;
+        *{
+            // border: solid 1px red;
+        }
+        .recipe-label, .recipe-calories, .recipe-yield, h3{
+            text-align: center;
+        }
+        .recipe-image{
+            border-radius: 6px;
+            margin: auto;
+        }
+        .recipe-label{
+            font-size: 26px;
+            color: var(--green_color1);
+        }
+        h3{
+            color: var(--green_color1);
+            font-weight: 400;
+            margin: 5px 0;
+        }
+    }
+    // padding: 30px;
 }
