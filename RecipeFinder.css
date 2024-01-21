@@ -7,6 +7,7 @@
   --grey_color1: rgb(70, 70, 70);
   --grey_color2: rgb(211, 211, 211);
   --grey_color3: rgb(226, 226, 226);
+  --grey_color4: rgb(152, 152, 152);
 }
 
 * {
@@ -15,6 +16,21 @@
   box-sizing: border-box;
 }
 
+body {
+  padding-bottom: 300px;
+}
+body::-webkit-scrollbar {
+  width: 14px;
+}
+body::-webkit-scrollbar-track {
+  background: none;
+}
+body::-webkit-scrollbar-thumb {
+  background: var(--grey_color4);
+  border: 2px solid transparent;
+  border-radius: 50px;
+  background-clip: content-box;
+}
 body #app-container {
   padding: 0px 3%;
   max-width: 1200px;
@@ -44,6 +60,7 @@ body #app-container #app-options #option-banner {
      object-position: 100% 25%;
   -o-object-fit: cover;
      object-fit: cover;
+  border-radius: 10px;
 }
 body #app-container #app-options #app-option-buttons-container {
   margin: 15px 0px;
@@ -337,6 +354,12 @@ body #app-container #app-screens #app-screen-search #search-screen-categories bu
     fill: var(--green_color1);
   }
 }
+#app-screen-fridge #fridge-ingredient-container .fridge-ingredient .fridge-ingredient-options .grocery-option {
+  transform: scale(1.15);
+}
+#app-screen-fridge #fridge-ingredient-container .fridge-ingredient .fridge-ingredient-options .cook-option {
+  transform: scale(1.1);
+}
 #app-screen-fridge #fridge-ingredient-container .fridge-ingredient .fridge-ingredient-options .cooking-list {
   fill: var(--orange_color1);
 }
@@ -452,6 +475,46 @@ body #app-container #app-screens #app-screen-search #search-screen-categories bu
   justify-content: space-evenly;
   width: 100%;
 }
+#app-screen-fridge #fridge-cook-recipe-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: solid 1px var(--grey_color2);
+  padding: 10px;
+  background: rgb(242, 242, 242);
+  border-radius: 10px;
+  display: none;
+}
+#app-screen-fridge #fridge-cook-recipe-container .cook-recipe-image {
+  width: 100%;
+  height: 260px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+#app-screen-fridge #fridge-cook-recipe-container .cook-recipe-line {
+  padding: 5px 0px;
+  border-bottom: solid 2px var(--grey_color2);
+}
+#app-screen-fridge #fridge-cook-recipe-container .cook-recipe-line:last-child {
+  border-bottom: none;
+}
+
+.no-recipes-found {
+  font-size: 22px;
+  color: var(--grey_color1);
+  fill: var(--grey_color1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+.no-recipes-found .no-recipe-found-image {
+  margin-top: 20px;
+  width: 50px;
+  height: 50px;
+}
 
 .recipe-container {
   display: flex;
@@ -516,6 +579,7 @@ body #app-container #app-screens #app-screen-search #search-screen-categories bu
   border-radius: 10px;
   background: white;
   max-width: 600px;
+  margin: 10px;
 }
 .recipe-dialog-box .dialog-box-recipe-container .recipe-label, .recipe-dialog-box .dialog-box-recipe-container .recipe-calories, .recipe-dialog-box .dialog-box-recipe-container .recipe-yield, .recipe-dialog-box .dialog-box-recipe-container h3 {
   text-align: center;
@@ -523,6 +587,10 @@ body #app-container #app-screens #app-screen-search #search-screen-categories bu
 .recipe-dialog-box .dialog-box-recipe-container .recipe-image {
   border-radius: 6px;
   margin: auto;
+  width: 100%;
+  max-height: 280px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .recipe-dialog-box .dialog-box-recipe-container .recipe-label {
   font-size: 26px;
@@ -532,4 +600,57 @@ body #app-container #app-screens #app-screen-search #search-screen-categories bu
   color: var(--green_color1);
   font-weight: 400;
   margin: 5px 0;
+}
+.recipe-dialog-box .dialog-box-recipe-container .recipe-ingredient-list {
+  overflow: scroll;
+  max-height: 340px;
+  border: solid 1px var(--grey_color2);
+  border-radius: 6px;
+  padding: 0px 8px;
+  overflow-x: hidden;
+  margin-bottom: 10px;
+}
+.recipe-dialog-box .dialog-box-recipe-container .recipe-ingredient-list .recipe-ingredient {
+  padding: 5px 0px;
+  border-bottom: solid 2px var(--grey_color2);
+}
+.recipe-dialog-box .dialog-box-recipe-container .recipe-ingredient-list .recipe-ingredient:last-child {
+  padding-bottom: 20px;
+  border-bottom: none;
+}
+.recipe-dialog-box .dialog-box-recipe-container .recipe-ingredient-list::-webkit-scrollbar {
+  width: 10px;
+}
+.recipe-dialog-box .dialog-box-recipe-container .recipe-ingredient-list::-webkit-scrollbar-track {
+  background: none;
+}
+.recipe-dialog-box .dialog-box-recipe-container .recipe-ingredient-list::-webkit-scrollbar-thumb {
+  background: var(--green_color1);
+  border: 2px solid transparent;
+  border-radius: 50px;
+  background-clip: content-box;
+}
+.recipe-dialog-box .dialog-box-options {
+  display: flex;
+  justify-content: space-evenly;
+}
+.recipe-dialog-box .dialog-box-options button {
+  background: none;
+  border: none;
+  width: 33px;
+  height: 33px;
+  fill: var(--grey_color1);
+  cursor: pointer;
+}
+.recipe-dialog-box .dialog-box-options #dialog-box-cook-option:hover {
+  fill: var(--orange_color1);
+}
+.recipe-dialog-box .dialog-box-options #dialog-box-grocery-option {
+  transform: scale(1.25);
+}
+.recipe-dialog-box .dialog-box-options #dialog-box-grocery-option:hover {
+  fill: var(--green_color1);
+}
+.recipe-dialog-box .dialog-box-options #dialog-box-cancel-option:hover {
+  fill: var(--red_color1);
 }/*# sourceMappingURL=RecipeFinder.css.map */
