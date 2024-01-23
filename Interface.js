@@ -22,9 +22,25 @@ $('#app-option-buttons-container > button').on('click', (event)=>{
         $('#option-banner').attr('src', `./IMGs/${imageValue}.png`);
         $('#option-banner').animate({ opacity: 1 }, imageSwitchSpeed)
     }, 200)
+
+    // Dealing with app bottom;
+    let scrolledDown = $(document).scrollTop()
+    let windowHeight = $(window).height();
+    let documentHeight = $(document).height();
+    if(scrolledDown + windowHeight <= documentHeight - 20 && isBottomRevealed){
+        isBottomRevealed = false;
+        $('#app-bottom').animate({
+            bottom: '-260px',
+            opacity: '.5'
+        }, 300, ()=>{
+        })
+    }
 })
 
 // Search screen ____________________________________________________________
+
+// Explore Recipes/ Categories - When a user clicks on a 
+// one of the hard coded category options to search for recipes.
 $('.category-compact-button').on('click', (event)=>{
     let isCompact = event.currentTarget.value;
     let arrayButtons = event.currentTarget.parentNode.querySelector('.category-buttons-array').children;
@@ -46,12 +62,12 @@ $('.category-compact-button').on('click', (event)=>{
     }
 })
 
+// Explore recipes / Categories, expand or contract depending on screen width
 let smallMode = 1;
 let prevWidth = null;
 $(document).ready(()=>{
     // Initially set inner width
     prevWidth = window.innerWidth;
-
     if(window.innerWidth >= 800){
         compactAll(false)
     }
@@ -81,8 +97,6 @@ $(window).resize(()=>{
     }
 })
 
-
-
 function compactAll(compact){
     // If the UI wants to compact all category options in the Explore Recipes screen
     let buttons = $('.category-compact-button');
@@ -92,6 +106,7 @@ function compactAll(compact){
         }
     }
 }
+
 
 $('.search_category').on('click', async (event)=>{
     $('#search-screen-search-recipes').fadeOut(200);
@@ -175,7 +190,8 @@ function updateFridgeIngredientDisplay(){
         return (
             `<div class='fridge-ingredient ${(ingredient.available) ? '' : 'fridge-ingredient-unavailable'}'>
                 <div class='fridge-ingredient-name'>
-                    <input type='text' value='${ingredient.name}' 
+                    <input type='text' 
+                        value='${ingredient.name}' 
                         class='fridge-ingredient-name-input' 
                         onFocus='ingredientFocus(this, true)' 
                         onBlur='ingredientFocus(this,false)'
@@ -238,7 +254,12 @@ function updateFridgeIngredientDisplay(){
         )
     })
     $('#fridge-cooking-list').html(Cooking);
-    $('#fridge-cooking-recipes-list').html(``);
+    $('#fridge-cooking-recipes-list').html(
+        `<div class="no-recipes-searched">
+            <img src="IMGs/Logo.svg">
+            <p>Explore recipes from your fridge!</p>
+        </div>`
+    );
 }
 
 function fridgeAction(id, action){
@@ -290,6 +311,7 @@ function ingredientFocus(target, focus){
 $("#fridge-explore-ingredients-button").on('click', async ()=>{
     if(isCookActive){
         $('#fridge-cook-recipe-container').fadeOut(400);
+        $('#fridge-explore-ingredients-button').text('Explore Selected?');
         isCookActive = 0;
     }
     else{
@@ -306,6 +328,7 @@ $("#fridge-explore-ingredients-button").on('click', async ()=>{
             $('#fridge-cooking-recipes-list').css('display', 'grid');
             $('#fridge-cooking-recipes-list').fadeIn(400);
         }else{
+            console.log('bad');
             $('#fridge-cooking-recipes-list').html(result[1]);
             $('#fridge-cooking-recipes-list').css('display', 'flex');
         }
@@ -318,14 +341,12 @@ $(document).ready(()=>{
 })
 
 
-
 // HTML string function
 let exploreData = ``;
 
 
 async function expandExploredData(index){
     let recipe = exploreData[index].recipe;
-
     $('body').append(
         `<div class='recipe-dialog-box'>
             <div class='dialog-box-recipe-container'>
@@ -364,16 +385,15 @@ async function expandExploredData(index){
 var isCookActive = 0;
 function dialogBoxRecipe(type, index){
     
-    // Save dialog data
-    let recipe = exploreData[index].recipe;
-    // let recipe = singleRecipe;
-
-    // Clean dialog box data
+    // Remove dialog box 
     $('.recipe-dialog-box').fadeOut()
 
     // Continue with dialog data
     if(type == 'cook'){
         isCookActive = 1;
+    
+        let recipe = exploreData[index].recipe;
+
         $('#fridge-cooking-recipes-list').fadeOut(400);
         
         $('#fridge-cook-recipe-container').html(
@@ -392,8 +412,51 @@ function dialogBoxRecipe(type, index){
     
 }
 
-// TEMPORARY 
-// dialogBoxRecipe('cook');
+
+
+// Grocery screen ______________________________________________________________
+
+
+// app bottom _______________________________________________________________
+
+var isBottomRevealed = false;
+
+$(window).on('scroll', ()=>{
+    let scrolledDown = $(document).scrollTop()
+    let windowHeight = $(window).height();
+    let documentHeight = $(document).height();
+
+    if(scrolledDown + windowHeight > documentHeight - 20 && !isBottomRevealed){
+        isBottomRevealed = true;
+        $('#app-bottom').animate({
+            bottom: '0px',
+            opacity: '1'
+        }, 300, ()=>{
+        })
+    }
+    else if(scrolledDown + windowHeight <= documentHeight - 20 && isBottomRevealed){
+        isBottomRevealed = false;
+        $('#app-bottom').animate({
+            bottom: '-260px',
+            opacity: '.5'
+        }, 300, ()=>{
+        })
+    }
+
+
+    let scrollImageTop = (id, originalTop, rate) =>{
+        let scrollRate = scrolledDown * rate;
+        let scrollTop = `${Math.floor(originalTop - scrollRate)}px`;
+        $(id).css('top', scrollTop)
+    }
+    
+    scrollImageTop(`#background_image1`, 1600, .5);
+    scrollImageTop(`#background_image2`, 1000, .5);
+    scrollImageTop(`#background_image3`, 400, .5);
+    scrollImageTop(`#background_image4`, 2200, .5);
+    scrollImageTop(`#background_image5`, 100, .5);
+})
+// Common Functions _________________________________________________________
 
 
 
@@ -428,19 +491,6 @@ async function submitRecipeQuery(queryString, count = 18, random = false){
         </div>`
         return [0, error]
     })
-}
-
-
-// Shop screen ______________________________________________________________
-
-
-
-
-
-// Common Functions _________________________________________________________
-
-function doSomething(){
-    console.log("Did something!");
 }
 
 function getUISVGSymbol(type){
@@ -486,11 +536,11 @@ function getUISVGSymbol(type){
             </svg>`
         )
     }
-    // else if(type == 'fridge'){
-    //     return (
-    //         ``
-    //     )
-    // }
+    else if(type == 'logo'){
+        return (
+            `<img src="IMGs/Logo.svg">`
+        )
+    }
     else{
         console.error('Error - Did not specify SVG return symbol');
     }

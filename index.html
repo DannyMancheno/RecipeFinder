@@ -21,6 +21,7 @@
         <script src="./Interface.js" defer type="text/javascript"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     </head>
+
     <body>
         <div id="app-container">
             <div id="app-header">
@@ -102,7 +103,12 @@
                             </button>
                         </form>
                     </div>
-                    <div id='search-screen-search-recipes'></div>
+                    <div id='search-screen-search-recipes'>
+                        <div class="no-recipes-searched">
+                            <img src="IMGs/Logo.svg">
+                            <p>Search the Edamam Recipe API!</p>
+                        </div>
+                    </div>
                 </div>
                 <div id="app-screen-fridge" class="app-screen">
                     <h3>
@@ -127,17 +133,24 @@
                         </h3>
                         <div id="fridge-cooking-list"></div>
                         <button id="fridge-explore-ingredients-button">
-                            Explore Selected
+                            Explore Selected ? 
                         </button>
                         <div id="fridge-cook-recipe-container"></div>
                         <div id="fridge-cooking-recipes-list"></div>
-                        
                     </div>
-                    
                 </div>
                 <div id="app-screen-grocery" class="app-screen">Grocery</div>
             </div>
-            
+            <div id="app-bottom">
+                APP BOTTOM
+            </div>
+        </div>
+        <div id="app-background">
+            <img src="IMGs/BackgroundImage1.png" id="background_image1">
+            <img src="IMGs/BackgroundImage2.png" id="background_image2">
+            <img src="IMGs/BackgroundImage3.png" id="background_image3">
+            <img src="IMGs/BackgroundImage4.png" id="background_image4">
+            <img src="IMGs/BackgroundImage5.png" id="background_image5">
         </div>
     </body>
 </html>

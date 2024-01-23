@@ -16,9 +16,48 @@
   box-sizing: border-box;
 }
 
-body {
-  padding-bottom: 300px;
+#app-background {
+  z-index: 0;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  opacity: 0.085;
 }
+#app-background * {
+  position: fixed;
+  z-index: 0;
+  transform: scale(2);
+}
+#app-background #background_image1 {
+  right: 0;
+  top: 1600px;
+}
+#app-background #background_image2 {
+  left: 10%;
+  top: 1000px;
+  transform: scale(-2, 2);
+}
+#app-background #background_image3 {
+  right: 10%;
+  top: 400px;
+}
+#app-background #background_image4 {
+  top: 2200px;
+  right: 15%;
+}
+#app-background #background_image5 {
+  top: 100px;
+  left: 10%;
+}
+
+#app-container {
+  position: relative;
+  z-index: 1;
+  min-height: 1000px;
+}
+
 body::-webkit-scrollbar {
   width: 14px;
 }
@@ -32,9 +71,12 @@ body::-webkit-scrollbar-thumb {
   background-clip: content-box;
 }
 body #app-container {
-  padding: 0px 3%;
+  z-index: 1;
   max-width: 1200px;
   margin: auto;
+}
+body #app-container #app-options, body #app-container #app-screens, body #app-container #app-bottom {
+  padding: 0 3%;
 }
 body #app-container #app-header {
   background: white;
@@ -112,8 +154,8 @@ body #app-container #app-screens #app-screen-search div h3 {
   color: var(--green_color1);
 }
 body #app-container #app-screens #app-screen-search #search-screen-search-recipes {
-  display: grid;
-  justify-content: space-evenly;
+  display: flex;
+  justify-items: center;
 }
 body #app-container #app-screens #app-screen-search #search-screen-categories .category-type-container {
   padding-bottom: none !important;
@@ -173,6 +215,11 @@ body #app-container #app-screens #app-screen-search #search-screen-categories bu
   color: var(--green_color1);
   background: var(--grey_color3);
 }
+body #app-container #app-bottom {
+  height: 300px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+}
 
 .form-bar {
   display: grid;
@@ -220,65 +267,6 @@ body #app-container #app-screens #app-screen-search #search-screen-categories bu
   border: solid 2px var(--green_color1);
 }
 
-@media (min-width: 700px) {
-  #search-screen-search-recipes {
-    grid-template-columns: auto auto;
-  }
-  #fridge-cooking-recipes-list {
-    grid-template-columns: auto auto;
-  }
-}
-@media (min-width: 800px) {
-  #search-screen-categories {
-    top: 30px;
-    position: sticky;
-    align-self: start;
-    grid-row: 1/3;
-    margin-right: 30px;
-  }
-  #search-screen-categories .category-type-container {
-    padding-bottom: 0px;
-  }
-  #search-screen-categories .category-type-container .category-compact-button {
-    pointer-events: none;
-  }
-  #search-screen-categories .category-type-container .category-compact-button img {
-    display: none;
-  }
-  #app-screen-search {
-    grid-template-rows: 90px auto;
-    grid-template-columns: 25% 75%;
-    align-items: start;
-  }
-  #search-screen-search-bar {
-    height: -moz-fit-content;
-    height: fit-content;
-  }
-}
-@media (min-width: 1100px) {
-  #search-screen-search-recipes {
-    grid-template-columns: auto auto auto;
-  }
-  #fridge-cooking-recipes-list {
-    grid-template-columns: auto auto auto;
-  }
-}
-@media (min-width: 400px) and (max-width: 599px) {
-  .category-buttons-array {
-    display: grid;
-    grid-template-columns: 50% 50%;
-  }
-}
-@media (min-width: 600px) and (max-width: 800px) {
-  .category-buttons-array {
-    display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
-  }
-}
-#app-container {
-  min-height: 1000px;
-}
-
 #app-screen-fridge h3 {
   margin-bottom: 10px;
   font-size: 27px;
@@ -321,7 +309,7 @@ body #app-container #app-screens #app-screen-search #search-screen-categories bu
 #app-screen-fridge #fridge-ingredient-container .fridge-ingredient .fridge-ingredient-options {
   display: flex;
   align-items: center;
-  z-index: 1;
+  z-index: 2;
   position: relative;
 }
 #app-screen-fridge #fridge-ingredient-container .fridge-ingredient .fridge-ingredient-options button {
@@ -378,7 +366,7 @@ body #app-container #app-screens #app-screen-search #search-screen-categories bu
   }
 }
 #app-screen-fridge #fridge-ingredient-container .fridge-ingredient .fridge-ingredient-options .ingredient-delete-options {
-  z-index: 2;
+  z-index: 3;
   position: absolute;
   right: 0;
   box-sizing: content-box;
@@ -471,7 +459,7 @@ body #app-container #app-screens #app-screen-search #search-screen-categories bu
   }
 }
 #app-screen-fridge #fridge-cooking-container #fridge-cooking-recipes-list {
-  display: grid;
+  display: flex;
   justify-content: space-evenly;
   width: 100%;
 }
@@ -481,6 +469,7 @@ body #app-container #app-screens #app-screen-search #search-screen-categories bu
   justify-content: center;
   border: solid 1px var(--grey_color2);
   padding: 10px;
+  margin-bottom: 50px;
   background: rgb(242, 242, 242);
   border-radius: 10px;
   display: none;
@@ -508,7 +497,7 @@ body #app-container #app-screens #app-screen-search #search-screen-categories bu
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  padding: 200px 0px;
 }
 .no-recipes-found .no-recipe-found-image {
   margin-top: 20px;
@@ -516,11 +505,31 @@ body #app-container #app-screens #app-screen-search #search-screen-categories bu
   height: 50px;
 }
 
+.no-recipes-searched {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 200px 0px !important;
+  opacity: 0.25;
+}
+.no-recipes-searched img {
+  max-width: 160px;
+  filter: contrast(0);
+}
+.no-recipes-searched p {
+  font-size: 18px;
+  margin-top: 20px;
+  text-align: center;
+}
+
 .recipe-container {
   display: flex;
   flex-direction: column;
+  width: 100%;
   max-width: 300px;
-  margin: 5px;
+  margin: 5px !important;
   border: solid 1px var(--grey_color2);
   padding: 8px;
   background: rgb(242, 242, 242);
@@ -563,14 +572,13 @@ body #app-container #app-screens #app-screen-search #search-screen-categories bu
 }
 
 .recipe-dialog-box {
-  z-index: 4;
+  z-index: 5;
   position: fixed;
   width: 100%;
   height: 100%;
   top: 0%;
   left: 0%;
   display: flex;
-  align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.5);
 }
@@ -578,7 +586,10 @@ body #app-container #app-screens #app-screen-search #search-screen-categories bu
   padding: 10px;
   border-radius: 10px;
   background: white;
-  max-width: 600px;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 100%;
+  max-width: 400px;
   margin: 10px;
 }
 .recipe-dialog-box .dialog-box-recipe-container .recipe-label, .recipe-dialog-box .dialog-box-recipe-container .recipe-calories, .recipe-dialog-box .dialog-box-recipe-container .recipe-yield, .recipe-dialog-box .dialog-box-recipe-container h3 {
@@ -603,7 +614,7 @@ body #app-container #app-screens #app-screen-search #search-screen-categories bu
 }
 .recipe-dialog-box .dialog-box-recipe-container .recipe-ingredient-list {
   overflow: scroll;
-  max-height: 340px;
+  max-height: 300px;
   border: solid 1px var(--grey_color2);
   border-radius: 6px;
   padding: 0px 8px;
@@ -653,4 +664,73 @@ body #app-container #app-screens #app-screen-search #search-screen-categories bu
 }
 .recipe-dialog-box .dialog-box-options #dialog-box-cancel-option:hover {
   fill: var(--red_color1);
+}
+
+@media (min-width: 400px) and (max-width: 600px) {
+  .category-buttons-array {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+}
+@media (min-width: 600px) {
+  #search-screen-search-recipes, #fridge-cooking-recipes-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+    justify-items: center;
+  }
+  #search-screen-search-recipes {
+    padding-bottom: 320px !important;
+  }
+  #app-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    bottom: -260px;
+    opacity: 0.5;
+    background: rgba(0, 0, 0, 0.8);
+  }
+  #fridge-cooking-recipes-list, #fridge-cook-recipe-container {
+    margin-bottom: 320px !important;
+  }
+}
+@media (min-width: 600px) and (max-width: 800px) {
+  .category-buttons-array {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+  }
+}
+@media (min-width: 800px) {
+  #search-screen-categories {
+    top: 30px;
+    padding-bottom: 300px !important;
+    position: sticky;
+    align-self: start;
+    grid-row: 1/3;
+    margin-right: 30px;
+  }
+  #search-screen-categories .category-type-container {
+    padding-bottom: 0px;
+  }
+  #search-screen-categories .category-type-container .category-compact-button {
+    pointer-events: none;
+  }
+  #search-screen-categories .category-type-container .category-compact-button img {
+    display: none;
+  }
+  #app-screen-search {
+    grid-template-rows: 90px auto;
+    grid-template-columns: 25% 75%;
+    align-items: start;
+  }
+  #search-screen-search-bar {
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+}
+@media (min-width: 1100px) {
+  #search-screen-search-recipes, #fridge-cooking-recipes-list {
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+  }
 }/*# sourceMappingURL=RecipeFinder.css.map */
