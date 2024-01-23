@@ -1,6 +1,6 @@
 // Initial setup. 
 $(document).ready(()=>{
-    $('.app-option')[1].click();
+    $('.app-option')[0].click();
 })
 
 // Find Recipes/ Search Fridge/ Shopping List Button UI Change
@@ -27,7 +27,9 @@ $('#app-option-buttons-container > button').on('click', (event)=>{
     let scrolledDown = $(document).scrollTop()
     let windowHeight = $(window).height();
     let documentHeight = $(document).height();
+
     if(scrolledDown + windowHeight <= documentHeight - 20 && isBottomRevealed){
+        
         isBottomRevealed = false;
         $('#app-bottom').animate({
             bottom: '-260px',
@@ -118,13 +120,14 @@ $('.search_category').on('click', async (event)=>{
     $('#search-bar-input').val(categoryValue);
     // $('#search-screen-search-recipes').html(await submitRecipeQuery(categoryValue, 18, true));
     let result =  await submitRecipeQuery(categoryValue, 18, true);
-        if(result[0]){
-            $('#search-screen-search-recipes').html(result[1]);
-            $('#search-screen-search-recipes').css('display', 'grid');
-        }else{
-            $('#search-screen-search-recipes').html(result[1]);
-            $('#search-screen-search-recipes').css('display', 'flex');
-        }
+    if(result[0]){
+        $('#search-screen-search-recipes').html(result[1]);
+        $('#search-screen-search-recipes').css('display', 'grid');
+    }else{
+        
+        $('#search-screen-search-recipes').css('display', 'flex');
+        $('#search-screen-search-recipes').html(result[1]);
+    }
 
     $('#search-screen-search-recipes').fadeIn(200);
 })
@@ -328,7 +331,7 @@ $("#fridge-explore-ingredients-button").on('click', async ()=>{
             $('#fridge-cooking-recipes-list').css('display', 'grid');
             $('#fridge-cooking-recipes-list').fadeIn(400);
         }else{
-            console.log('bad');
+            
             $('#fridge-cooking-recipes-list').html(result[1]);
             $('#fridge-cooking-recipes-list').css('display', 'flex');
         }
@@ -341,9 +344,9 @@ $(document).ready(()=>{
 })
 
 
+
 // HTML string function
 let exploreData = ``;
-
 
 async function expandExploredData(index){
     let recipe = exploreData[index].recipe;
@@ -394,25 +397,45 @@ function dialogBoxRecipe(type, index){
     
         let recipe = exploreData[index].recipe;
 
+        let carbs = Math.floor(recipe.digest.filter((item)=>{
+            if(item.label === 'Carbs'){
+                return true;
+            }
+        })[0].sub[0].total);
+
         $('#fridge-cooking-recipes-list').fadeOut(400);
         
         $('#fridge-cook-recipe-container').html(
             `<h3>${recipe.label}</h3>
             <img class='cook-recipe-image' src='${recipe.image}'>
+            <div class='cook-recipe-info'>
+                <div class='cook-recipe-calories'>
+                    <span>${Math.floor(recipe.calories / recipe.yield)}</span>
+                    Calories
+                </div>
+                <div class='cook-recipe-yield'>
+                    <span>${recipe.yield}</span>
+                    Servings
+                </div>
+                <div class='cook-recipe-carbs'>
+                    <span>${carbs}</span>
+                    Net Carbs
+                </div>
+                <div class='cook-recipe-url'>
+                    <span><a href='${recipe.url}'>${recipe.source}</a></span>
+                </div>
+            </div>
             <div>
-            ${recipe.ingredientLines.map(line =>{
-                return `<div class='cook-recipe-line'>${line}</div>`
-            }).join('')}
+                ${recipe.ingredientLines.map(line =>{
+                    return `<div class='cook-recipe-line'>${line}</div>`
+                }).join('')}
             </div>`
         );
-
         $('#fridge-cook-recipe-container').fadeIn(400);
         $('#fridge-explore-ingredients-button').text('Finished Cooking?');
+
     }
-    
 }
-
-
 
 // Grocery screen ______________________________________________________________
 
@@ -449,12 +472,12 @@ $(window).on('scroll', ()=>{
         let scrollTop = `${Math.floor(originalTop - scrollRate)}px`;
         $(id).css('top', scrollTop)
     }
-    
-    scrollImageTop(`#background_image1`, 1600, .5);
-    scrollImageTop(`#background_image2`, 1000, .5);
-    scrollImageTop(`#background_image3`, 400, .5);
-    scrollImageTop(`#background_image4`, 2200, .5);
-    scrollImageTop(`#background_image5`, 100, .5);
+
+    scrollImageTop(`#background_image1`, 1600, .3);
+    scrollImageTop(`#background_image2`, 1000, .3);
+    scrollImageTop(`#background_image3`, 400, .3);
+    scrollImageTop(`#background_image4`, 2200, .3);
+    scrollImageTop(`#background_image5`, 100, .3);
 })
 // Common Functions _________________________________________________________
 
@@ -474,8 +497,14 @@ async function submitRecipeQuery(queryString, count = 18, random = false){
                 <img class='recipe-image' src='${recipe.image}'/>
                 <div class='recipe-label'>${recipe.label}</div>
                 <div class='recipe-info'>
-                    <div class='recipe-calories'>Calories per serving: ${Math.floor(recipe.calories / recipe.yield)}</div>
-                    <div class='recipe-servings'>Servings: ${recipe.yield}</div>
+                    <div class='recipe-calories'>
+                        <span>${Math.floor(recipe.calories / recipe.yield)}</span>
+                        Calories
+                    </div>
+                    <div class='recipe-servings'>
+                        <span>${recipe.yield}</span>
+                        Servings
+                    </div>
                 </div>
                 <button class='recipe-ingredient-expand' onClick='expandExploredData(${i})'>
                     View Recipe

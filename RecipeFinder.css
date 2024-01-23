@@ -156,6 +156,7 @@ body #app-container #app-screens #app-screen-search div h3 {
 body #app-container #app-screens #app-screen-search #search-screen-search-recipes {
   display: flex;
   justify-items: center;
+  min-height: 400px;
 }
 body #app-container #app-screens #app-screen-search #search-screen-categories .category-type-container {
   padding-bottom: none !important;
@@ -480,7 +481,24 @@ body #app-container #app-bottom {
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 10px;
+  margin-bottom: 5px;
+}
+#app-screen-fridge #fridge-cook-recipe-container .cook-recipe-info {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-around;
   margin-bottom: 10px;
+}
+#app-screen-fridge #fridge-cook-recipe-container .cook-recipe-info div {
+  text-align: center;
+}
+#app-screen-fridge #fridge-cook-recipe-container .cook-recipe-info div span {
+  color: var(--green_color1);
+  font-weight: bolder;
+}
+#app-screen-fridge #fridge-cook-recipe-container .cook-recipe-info div span a {
+  text-decoration: none;
+  color: green;
 }
 #app-screen-fridge #fridge-cook-recipe-container .cook-recipe-line {
   padding: 5px 0px;
@@ -497,7 +515,8 @@ body #app-container #app-bottom {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 200px 0px;
+  margin: auto;
+  padding: 200px 0px !important;
 }
 .no-recipes-found .no-recipe-found-image {
   margin-top: 20px;
@@ -549,6 +568,10 @@ body #app-container #app-bottom {
 .recipe-container .recipe-info div {
   padding-bottom: 4px !important;
   margin-bottom: none;
+}
+.recipe-container .recipe-info div span {
+  font-weight: bolder;
+  color: var(--green_color1);
 }
 .recipe-container .recipe-ingredient-expand {
   margin-top: auto;

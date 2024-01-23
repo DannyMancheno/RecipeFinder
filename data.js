@@ -1,5 +1,3 @@
-
-
 let dataFile = {
     "from": 1,
     "to": 20,
@@ -15708,5 +15706,3 @@ let dataFile = {
         }
     ]
 }
-
-let singleRecipe = dataFile.hits[0].recipe;
