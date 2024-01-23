@@ -4,6 +4,7 @@
   --orange_color2: rgb(255, 248, 234);
   --green_color1: rgb(34, 145, 38);
   --green_color2: rgb(245, 252, 246);
+  --green_color3: rgb(202, 253, 210);
   --grey_color1: rgb(70, 70, 70);
   --grey_color2: rgb(211, 211, 211);
   --grey_color3: rgb(226, 226, 226);
@@ -214,12 +215,71 @@ body #app-container #app-screens #app-screen-search #search-screen-categories bu
 body #app-container #app-screens #app-screen-search #search-screen-categories button.selected {
   font-weight: 600;
   color: var(--green_color1);
-  background: var(--grey_color3);
+  background: var(--grey_color4);
 }
 body #app-container #app-bottom {
-  height: 300px;
   width: 100%;
   background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+}
+body #app-container #app-bottom #app-bottom-info {
+  color: var(--grey_color2);
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  padding: 0px 3%;
+}
+body #app-container #app-bottom #app-bottom-info .app-bottom-section {
+  margin-bottom: 10px;
+}
+body #app-container #app-bottom #app-bottom-info .app-bottom-section h3 {
+  color: var(--grey_color4);
+  margin-bottom: 5px;
+}
+body #app-container #app-bottom #app-bottom-info #app-bottom-main-info {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+body #app-container #app-bottom #app-bottom-info #app-bottom-main-info #app-author {
+  color: var(--grey_color4);
+  text-align: center;
+}
+body #app-container #app-bottom #app-bottom-info #app-bottom-main-info #edamam-badge {
+  width: 100%;
+  max-width: 200px;
+  cursor: pointer;
+}
+body #app-container #app-bottom #app-bottom-info #app-bottom-link-info {
+  display: flex;
+  flex-direction: column;
+}
+body #app-container #app-bottom #app-bottom-info #app-bottom-link-info a {
+  color: var(--grey_color2);
+  margin-bottom: 5px;
+  text-decoration: none;
+}
+body #app-container #app-bottom #app-bottom-info #app-bottom-link-info a:hover {
+  color: var(--green_color3);
+}
+body #app-container #app-bottom #app-bottom-info #app-bottom-danny-info a {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  text-decoration: none;
+  color: var(--grey_color2);
+}
+body #app-container #app-bottom #app-bottom-info #app-bottom-danny-info a:hover {
+  color: var(--green_color3);
+}
+body #app-container #app-bottom #app-bottom-info #app-bottom-danny-info a svg {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+}
+body #app-container #app-bottom #app-bottom-info #app-bottom-about-info a {
+  color: var(--green_color3);
 }
 
 .form-bar {
@@ -474,6 +534,7 @@ body #app-container #app-bottom {
   background: rgb(242, 242, 242);
   border-radius: 10px;
   display: none;
+  max-width: 450px;
 }
 #app-screen-fridge #fridge-cook-recipe-container .cook-recipe-image {
   width: 100%;
@@ -706,12 +767,36 @@ body #app-container #app-bottom {
     padding-bottom: 320px !important;
   }
   #app-bottom {
+    height: 300px;
     position: fixed;
     bottom: 0;
     left: 0;
     bottom: -260px;
     opacity: 0.5;
     background: rgba(0, 0, 0, 0.8);
+  }
+  #app-bottom #app-bottom-info {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: min-content min-content auto;
+  }
+  #app-bottom #app-bottom-info #app-bottom-main-info {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-column: 1/3;
+    justify-items: center;
+  }
+  #app-bottom #app-bottom-info #app-bottom-main-info #edamam-badge {
+    width: 100%;
+    max-width: 250px;
+    box-sizing: border-box;
+  }
+  #app-bottom #app-bottom-info #app-bottom-main-info #app-author {
+    box-sizing: border-box;
+    margin: 0px;
+  }
+  #app-bottom #app-bottom-info #app-bottom-about-info {
+    grid-column: 1/3;
   }
   #fridge-cooking-recipes-list, #fridge-cook-recipe-container {
     margin-bottom: 320px !important;

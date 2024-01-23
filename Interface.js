@@ -23,20 +23,20 @@ $('#app-option-buttons-container > button').on('click', (event)=>{
         $('#option-banner').animate({ opacity: 1 }, imageSwitchSpeed)
     }, 200)
 
-    // Dealing with app bottom;
-    let scrolledDown = $(document).scrollTop()
-    let windowHeight = $(window).height();
-    let documentHeight = $(document).height();
+    // // Dealing with app bottom;
+    // let scrolledDown = $(document).scrollTop()
+    // let windowHeight = $(window).height();
+    // let documentHeight = $(document).height();
 
-    if(scrolledDown + windowHeight <= documentHeight - 20 && isBottomRevealed){
+    // if(scrolledDown + windowHeight <= documentHeight - 5 && isBottomRevealed){
         
-        isBottomRevealed = false;
-        $('#app-bottom').animate({
-            bottom: '-260px',
-            opacity: '.5'
-        }, 300, ()=>{
-        })
-    }
+    //     isBottomRevealed = false;
+    //     $('#app-bottom').animate({
+    //         bottom: '-260px',
+    //         opacity: '.5'
+    //     }, 300, ()=>{
+    //     })
+    // }
 })
 
 // Search screen ____________________________________________________________
@@ -325,7 +325,7 @@ $("#fridge-explore-ingredients-button").on('click', async ()=>{
             selected += `${item.name} `
         })
         
-        let result =  await submitRecipeQuery(selected, 6, true);
+        let result =  await submitRecipeQuery(selected, 9, true);
         if(result[0]){
             $('#fridge-cooking-recipes-list').html(result[1]);
             $('#fridge-cooking-recipes-list').css('display', 'grid');
@@ -364,19 +364,19 @@ async function expandExploredData(index){
                 <div class='dialog-box-options'>
                     <button 
                         id='dialog-box-cook-option'
-                        onClick="dialogBoxRecipe('cook', ${index})"
+                        onClick="dialogRecipeAction(this, 'cook', ${index})"
                     >
                         ${getUISVGSymbol(`cook`)}
                     </button>
                     <button 
                         id='dialog-box-grocery-option'
-                        onClick="dialogBoxRecipe('grocery', ${index})"
+                        onClick="dialogRecipeAction(this, 'grocery', ${index})"
                     >
                         ${getUISVGSymbol('grocery')}
                     </button>
                     <button 
                         id='dialog-box-cancel-option'
-                        onClick="dialogBoxRecipe()"
+                        onClick="dialogRecipeAction(this, 'remove')"
                     >
                         ${getUISVGSymbol('cancel')}
                     </button>
@@ -386,53 +386,61 @@ async function expandExploredData(index){
   );
 }
 var isCookActive = 0;
-function dialogBoxRecipe(type, index){
-    
+function dialogRecipeAction(target, type, index){
     // Remove dialog box 
-    $('.recipe-dialog-box').fadeOut()
+    if(type == 'remove'){
+        $('.recipe-dialog-box').fadeOut()
+    }
 
     // Continue with dialog data
     if(type == 'cook'){
-        isCookActive = 1;
+        if(isCookActive){
+            isCookActive = 0;
+            $('#fridge-cook-recipe-container').fadeOut(400);
+            $('#fridge-cooking-recipes-list').fadeIn(400);
+            $('#fridge-explore-ingredients-button').text('Explore Recipes ?');
+        }
+        else{
+            isCookActive = 1;
+            $(target).css('fill', 'var(--orange_color1)');
+            let recipe = exploreData[index].recipe;
+            let carbs = Math.floor(recipe.digest.filter((item)=>{
+                if(item.label === 'Carbs'){
+                    return true;
+                }
+            })[0].sub[0].total);
     
-        let recipe = exploreData[index].recipe;
-
-        let carbs = Math.floor(recipe.digest.filter((item)=>{
-            if(item.label === 'Carbs'){
-                return true;
-            }
-        })[0].sub[0].total);
-
-        $('#fridge-cooking-recipes-list').fadeOut(400);
-        
-        $('#fridge-cook-recipe-container').html(
-            `<h3>${recipe.label}</h3>
-            <img class='cook-recipe-image' src='${recipe.image}'>
-            <div class='cook-recipe-info'>
-                <div class='cook-recipe-calories'>
-                    <span>${Math.floor(recipe.calories / recipe.yield)}</span>
-                    Calories
+            $('#fridge-cooking-recipes-list').fadeOut(400);
+            
+            $('#fridge-cook-recipe-container').html(
+                `<h3>${recipe.label}</h3>
+                <img class='cook-recipe-image' src='${recipe.image}'>
+                <div class='cook-recipe-info'>
+                    <div class='cook-recipe-calories'>
+                        <span>${Math.floor(recipe.calories / recipe.yield)}</span>
+                        Calories
+                    </div>
+                    <div class='cook-recipe-yield'>
+                        <span>${recipe.yield}</span>
+                        Servings
+                    </div>
+                    <div class='cook-recipe-carbs'>
+                        <span>${carbs}</span>
+                        Net Carbs
+                    </div>
+                    <div class='cook-recipe-url'>
+                        <span><a href='${recipe.url}'>${recipe.source}</a></span>
+                    </div>
                 </div>
-                <div class='cook-recipe-yield'>
-                    <span>${recipe.yield}</span>
-                    Servings
-                </div>
-                <div class='cook-recipe-carbs'>
-                    <span>${carbs}</span>
-                    Net Carbs
-                </div>
-                <div class='cook-recipe-url'>
-                    <span><a href='${recipe.url}'>${recipe.source}</a></span>
-                </div>
-            </div>
-            <div>
-                ${recipe.ingredientLines.map(line =>{
-                    return `<div class='cook-recipe-line'>${line}</div>`
-                }).join('')}
-            </div>`
-        );
-        $('#fridge-cook-recipe-container').fadeIn(400);
-        $('#fridge-explore-ingredients-button').text('Finished Cooking?');
+                <div>
+                    ${recipe.ingredientLines.map(line =>{
+                        return `<div class='cook-recipe-line'>${line}</div>`
+                    }).join('')}
+                </div>`
+            );
+            $('#fridge-cook-recipe-container').fadeIn(400);
+            $('#fridge-explore-ingredients-button').text('Finished Cooking ?');
+        }
 
     }
 }
@@ -444,29 +452,62 @@ function dialogBoxRecipe(type, index){
 
 var isBottomRevealed = false;
 
+function revealAppBottom(active, pace = 300){
+    if(active){
+        $('#app-bottom').animate({
+            bottom: '0px',
+            opacity: '1'
+        }, pace)
+    }
+    else{
+        $('#app-bottom').animate({
+            bottom: '-260px',
+            opacity: '.5'
+        }, pace)
+        $('#app-bottom-main-info').animate({
+            paddingTop: '0px'
+        }, pace)
+    }
+}
+
+$('#app-bottom').on('mouseenter', ()=>{
+    // console.log('moused in');
+    if(!isBottomRevealed){
+        isBottomRevealed = 1;
+        revealAppBottom(true);
+    }
+})
+$('#app-bottom').on('mouseleave', ()=>{
+    isBottomRevealed = 0;
+    revealAppBottom(false);
+})
+
+
+// Find Recipes/ Search Fridge/ Shopping List Button UI Change
+$('#app-option-buttons-container > button').on('click', (event)=>{
+    let scrolledDown = $(document).scrollTop()
+    let windowHeight = $(window).height();
+    let documentHeight = $(document).height();
+
+    if(scrolledDown + windowHeight <= documentHeight - 5 && isBottomRevealed){
+        isBottomRevealed = false;
+        revealAppBottom(false);
+    }
+})
+
 $(window).on('scroll', ()=>{
     let scrolledDown = $(document).scrollTop()
     let windowHeight = $(window).height();
     let documentHeight = $(document).height();
 
-    if(scrolledDown + windowHeight > documentHeight - 20 && !isBottomRevealed){
+    if(scrolledDown + windowHeight > documentHeight - 5 && !isBottomRevealed){
         isBottomRevealed = true;
-        $('#app-bottom').animate({
-            bottom: '0px',
-            opacity: '1'
-        }, 300, ()=>{
-        })
+        revealAppBottom(true, 400);
     }
-    else if(scrolledDown + windowHeight <= documentHeight - 20 && isBottomRevealed){
+    else if(scrolledDown + windowHeight <= documentHeight - 5 && isBottomRevealed){
         isBottomRevealed = false;
-        $('#app-bottom').animate({
-            bottom: '-260px',
-            opacity: '.5'
-        }, 300, ()=>{
-        })
+        revealAppBottom(false);
     }
-
-
     let scrollImageTop = (id, originalTop, rate) =>{
         let scrollRate = scrolledDown * rate;
         let scrollTop = `${Math.floor(originalTop - scrollRate)}px`;
