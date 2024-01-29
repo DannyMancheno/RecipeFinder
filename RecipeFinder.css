@@ -127,6 +127,20 @@ body #app-container #app-options #app-option-buttons-container .app-option {
 body #app-container #app-options #app-option-buttons-container .app-option:hover {
   animation: app-option-hovered forwards 0.3s;
 }
+body #app-container #app-options #app-option-buttons-container #grocery-list-app-option-button {
+  position: relative;
+}
+body #app-container #app-options #app-option-buttons-container #grocery-list-app-option-button #grocery-list-count-badge {
+  display: block;
+  position: absolute;
+  padding: 0px 8px;
+  justify-content: center;
+  top: -10px;
+  right: -5px;
+  background: var(--green_color1);
+  color: white;
+  border-radius: 10px;
+}
 @keyframes app-option-hovered {
   from {
     border-radius: 20px;
@@ -182,6 +196,7 @@ body #app-container #app-screens #app-screen-search #search-screen-categories .c
   font-weight: 400px;
   margin: 10px 0px;
   color: var(--green_color1);
+  margin-left: 5px;
 }
 body #app-container #app-screens #app-screen-search #search-screen-categories .category-type-container button.category-compact-button img {
   filter: contrast(0%);
@@ -199,6 +214,7 @@ body #app-container #app-screens #app-screen-search #search-screen-categories bu
   background: none;
   border: none;
   text-align: left;
+  padding-left: 5px;
 }
 body #app-container #app-screens #app-screen-search #search-screen-categories button.search_category:hover {
   cursor: pointer;
@@ -215,7 +231,7 @@ body #app-container #app-screens #app-screen-search #search-screen-categories bu
 body #app-container #app-screens #app-screen-search #search-screen-categories button.selected {
   font-weight: 600;
   color: var(--green_color1);
-  background: var(--grey_color4);
+  background: color-mix(in srgb, var(--grey_color2), transparent);
 }
 body #app-container #app-bottom {
   width: 100%;
@@ -328,6 +344,170 @@ body #app-container #app-bottom #app-bottom-info #app-bottom-about-info a {
   border: solid 2px var(--green_color1);
 }
 
+#grocery-list-ingredient-container, #cart-list-ingredient-container {
+  margin-bottom: 10px;
+  min-height: 200px;
+}
+#grocery-list-ingredient-container .grocery-list-no-ingredients, #grocery-list-ingredient-container .cart-list-no-ingredients, #cart-list-ingredient-container .grocery-list-no-ingredients, #cart-list-ingredient-container .cart-list-no-ingredients {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 100px 0px;
+}
+#grocery-list-ingredient-container .grocery-list-no-ingredients svg, #grocery-list-ingredient-container .cart-list-no-ingredients svg, #cart-list-ingredient-container .grocery-list-no-ingredients svg, #cart-list-ingredient-container .cart-list-no-ingredients svg {
+  width: 50px;
+  height: 50px;
+  fill: var(--grey_color2);
+}
+#grocery-list-ingredient-container .grocery-list-no-ingredients span, #grocery-list-ingredient-container .cart-list-no-ingredients span, #cart-list-ingredient-container .grocery-list-no-ingredients span, #cart-list-ingredient-container .cart-list-no-ingredients span {
+  font-size: 22px;
+  color: var(--grey_color2);
+}
+#grocery-list-ingredient-container .grocery-ingredient, #grocery-list-ingredient-container .cart-ingredient, #cart-list-ingredient-container .grocery-ingredient, #cart-list-ingredient-container .cart-ingredient {
+  border-bottom: solid 1px var(--grey_color1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0px;
+}
+#grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-name, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-name, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-name, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-name, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-name, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-name, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-name, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-name {
+  width: 100%;
+}
+#grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-name .grocery-ingredient-name-input, #grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-name .cart-ingredient-name-input, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-name .grocery-ingredient-name-input, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-name .cart-ingredient-name-input, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-name .grocery-ingredient-name-input, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-name .cart-ingredient-name-input, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-name .grocery-ingredient-name-input, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-name .cart-ingredient-name-input, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-name .grocery-ingredient-name-input, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-name .cart-ingredient-name-input, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-name .grocery-ingredient-name-input, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-name .cart-ingredient-name-input, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-name .grocery-ingredient-name-input, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-name .cart-ingredient-name-input, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-name .grocery-ingredient-name-input, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-name .cart-ingredient-name-input {
+  font-size: 18px;
+  border: none;
+  width: 100%;
+  text-overflow: ellipsis;
+  background: none;
+}
+#grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-name .grocery-ingredient-name-input:focus, #grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-name .cart-ingredient-name-input:focus, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-name .grocery-ingredient-name-input:focus, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-name .cart-ingredient-name-input:focus, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-name .grocery-ingredient-name-input:focus, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-name .cart-ingredient-name-input:focus, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-name .grocery-ingredient-name-input:focus, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-name .cart-ingredient-name-input:focus, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-name .grocery-ingredient-name-input:focus, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-name .cart-ingredient-name-input:focus, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-name .grocery-ingredient-name-input:focus, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-name .cart-ingredient-name-input:focus, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-name .grocery-ingredient-name-input:focus, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-name .cart-ingredient-name-input:focus, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-name .grocery-ingredient-name-input:focus, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-name .cart-ingredient-name-input:focus {
+  outline: none;
+  color: var(--green_color1);
+  caret-color: black;
+  background: var(--green_color2);
+}
+#grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-name .cart-ingredient-name-input, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-name .cart-ingredient-name-input, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-name .cart-ingredient-name-input, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-name .cart-ingredient-name-input, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-name .cart-ingredient-name-input, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-name .cart-ingredient-name-input, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-name .cart-ingredient-name-input, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-name .cart-ingredient-name-input {
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+#grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options {
+  display: flex;
+  align-items: center;
+  z-index: 2;
+  position: relative;
+  width: 143px;
+  justify-content: right;
+}
+#grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options button, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options button, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options button, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options button, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options button, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options button, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options button, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options button {
+  border: none;
+  background: none;
+  margin-left: 5px;
+  fill: var(--grey_color1);
+  cursor: pointer;
+}
+#grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options button:first-child, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options button:first-child, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options button:first-child, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options button:first-child, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options button:first-child, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options button:first-child, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options button:first-child, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options button:first-child {
+  margin-left: 0;
+}
+#grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options button svg, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options button svg, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options button svg, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options button svg, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options button svg, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options button svg, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options button svg, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options button svg {
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+}
+#grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .remove-option, #grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .decart-option, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .remove-option, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .decart-option, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .remove-option, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .decart-option, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .remove-option, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .decart-option, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .remove-option, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .decart-option, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .remove-option, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .decart-option, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .remove-option, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .decart-option, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .remove-option, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .decart-option {
+  fill: var(--red_color1);
+}
+#grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .infridge-option-unavailable, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .infridge-option-unavailable, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .infridge-option-unavailable, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .infridge-option-unavailable, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .infridge-option-unavailable, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .infridge-option-unavailable, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .infridge-option-unavailable, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .infridge-option-unavailable {
+  fill: var(--red_color1);
+}
+#grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .infridge-option-available, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .infridge-option-available, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .infridge-option-available, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .infridge-option-available, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .infridge-option-available, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .infridge-option-available, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .infridge-option-available, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .infridge-option-available {
+  fill: var(--green_color1);
+}
+#grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .cart-option, #grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .decart-option, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .cart-option, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .decart-option, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .cart-option, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .decart-option, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .cart-option, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .decart-option, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .cart-option, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .decart-option, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .cart-option, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .decart-option, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .cart-option, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .decart-option, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .cart-option, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .decart-option {
+  transform: scale(1.175);
+}
+#grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .remove-option, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .remove-option, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .remove-option, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .remove-option, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .remove-option, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .remove-option, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .remove-option, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .remove-option {
+  transform: scale(0.925);
+}
+#grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-remove-options, #grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-cart-options, #grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-infridge-options, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-remove-options, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-cart-options, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-infridge-options, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-remove-options, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-cart-options, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-infridge-options, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-remove-options, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-cart-options, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-infridge-options, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-remove-options, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-cart-options, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-infridge-options, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-remove-options, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-cart-options, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-infridge-options, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-remove-options, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-cart-options, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-infridge-options, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-remove-options, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-cart-options, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-infridge-options {
+  z-index: 3;
+  position: absolute;
+  right: 0;
+  box-sizing: content-box;
+  width: 0%;
+  display: none;
+  grid-template-columns: 65% auto;
+}
+#grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-remove-options button, #grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-cart-options button, #grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-infridge-options button, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-remove-options button, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-cart-options button, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-infridge-options button, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-remove-options button, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-cart-options button, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-infridge-options button, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-remove-options button, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-cart-options button, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-infridge-options button, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-remove-options button, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-cart-options button, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-infridge-options button, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-remove-options button, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-cart-options button, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-infridge-options button, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-remove-options button, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-cart-options button, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-infridge-options button, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-remove-options button, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-cart-options button, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-infridge-options button {
+  padding: 10px 0px;
+  margin: 0;
+  color: white;
+}
+#grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-remove-options .confirm, #grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-cart-options .confirm, #grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-infridge-options .confirm, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-remove-options .confirm, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-cart-options .confirm, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-infridge-options .confirm, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-remove-options .confirm, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-cart-options .confirm, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-infridge-options .confirm, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-remove-options .confirm, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-cart-options .confirm, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-infridge-options .confirm, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-remove-options .confirm, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-cart-options .confirm, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-infridge-options .confirm, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-remove-options .confirm, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-cart-options .confirm, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-infridge-options .confirm, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-remove-options .confirm, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-cart-options .confirm, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-infridge-options .confirm, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-remove-options .confirm, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-cart-options .confirm, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-infridge-options .confirm {
+  fill: white;
+  background: rgb(240, 0, 0);
+}
+#grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-remove-options .confirm:hover, #grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-cart-options .confirm:hover, #grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-infridge-options .confirm:hover, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-remove-options .confirm:hover, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-cart-options .confirm:hover, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-infridge-options .confirm:hover, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-remove-options .confirm:hover, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-cart-options .confirm:hover, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-infridge-options .confirm:hover, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-remove-options .confirm:hover, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-cart-options .confirm:hover, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-infridge-options .confirm:hover, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-remove-options .confirm:hover, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-cart-options .confirm:hover, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-infridge-options .confirm:hover, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-remove-options .confirm:hover, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-cart-options .confirm:hover, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-infridge-options .confirm:hover, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-remove-options .confirm:hover, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-cart-options .confirm:hover, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-infridge-options .confirm:hover, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-remove-options .confirm:hover, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-cart-options .confirm:hover, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-infridge-options .confirm:hover {
+  background: red;
+}
+#grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-remove-options .cancel, #grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-cart-options .cancel, #grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-infridge-options .cancel, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-remove-options .cancel, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-cart-options .cancel, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-infridge-options .cancel, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-remove-options .cancel, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-cart-options .cancel, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-infridge-options .cancel, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-remove-options .cancel, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-cart-options .cancel, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-infridge-options .cancel, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-remove-options .cancel, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-cart-options .cancel, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-infridge-options .cancel, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-remove-options .cancel, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-cart-options .cancel, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-infridge-options .cancel, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-remove-options .cancel, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-cart-options .cancel, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-infridge-options .cancel, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-remove-options .cancel, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-cart-options .cancel, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-infridge-options .cancel {
+  fill: var(--grey_color1);
+  background: var(--grey_color2);
+}
+#grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-remove-options .cancel:hover, #grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-cart-options .cancel:hover, #grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-infridge-options .cancel:hover, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-remove-options .cancel:hover, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-cart-options .cancel:hover, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-infridge-options .cancel:hover, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-remove-options .cancel:hover, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-cart-options .cancel:hover, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-infridge-options .cancel:hover, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-remove-options .cancel:hover, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-cart-options .cancel:hover, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-infridge-options .cancel:hover, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-remove-options .cancel:hover, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-cart-options .cancel:hover, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-infridge-options .cancel:hover, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-remove-options .cancel:hover, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-cart-options .cancel:hover, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-infridge-options .cancel:hover, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-remove-options .cancel:hover, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-cart-options .cancel:hover, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-infridge-options .cancel:hover, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-remove-options .cancel:hover, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-cart-options .cancel:hover, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-infridge-options .cancel:hover {
+  fill: var(--grey_color1);
+  background: var(--grey_color3);
+}
+#grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-cart-options .confirm, #grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-infridge-options .confirm, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-cart-options .confirm, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-infridge-options .confirm, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-cart-options .confirm, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-infridge-options .confirm, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-cart-options .confirm, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-infridge-options .confirm, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-cart-options .confirm, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-infridge-options .confirm, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-cart-options .confirm, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-infridge-options .confirm, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-cart-options .confirm, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-infridge-options .confirm, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-cart-options .confirm, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-infridge-options .confirm {
+  background: rgb(30, 131, 34);
+}
+#grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-cart-options .confirm:hover, #grocery-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-infridge-options .confirm:hover, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-cart-options .confirm:hover, #grocery-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-infridge-options .confirm:hover, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-cart-options .confirm:hover, #grocery-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-infridge-options .confirm:hover, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-cart-options .confirm:hover, #grocery-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-infridge-options .confirm:hover, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-cart-options .confirm:hover, #cart-list-ingredient-container .grocery-ingredient .grocery-ingredient-options .grocery-infridge-options .confirm:hover, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-cart-options .confirm:hover, #cart-list-ingredient-container .grocery-ingredient .cart-ingredient-options .grocery-infridge-options .confirm:hover, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-cart-options .confirm:hover, #cart-list-ingredient-container .cart-ingredient .grocery-ingredient-options .grocery-infridge-options .confirm:hover, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-cart-options .confirm:hover, #cart-list-ingredient-container .cart-ingredient .cart-ingredient-options .grocery-infridge-options .confirm:hover {
+  background: var(--green_color1);
+}
+
+#shopping-cart-options-text {
+  color: var(--grey_color2);
+  padding-bottom: 3px;
+  margin-bottom: 0;
+  border-bottom: solid 2px var(--grey_color2);
+  text-align: center;
+}
+
+#cart-options-container {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 100% 100%;
+  margin-top: 20px;
+  margin-bottom: 100px;
+  justify-content: center;
+  justify-items: center;
+}
+#cart-options-container button {
+  font-size: 18px;
+  padding: 5px 10px;
+  background: var(--grey_color3);
+  border: none;
+  border-radius: 10px;
+  margin: 0px 5px;
+  height: 40px;
+  width: 150px;
+  cursor: pointer;
+}
+#cart-options-container button:hover {
+  animation: animate-explore-ingredients-hovered 0.3s forwards;
+}
+#cart-options-container button:active {
+  background: var(--grey_color2);
+}
+#cart-options-container button:last-child {
+  color: white;
+  background: var(--green_color1);
+  grid-column: 1/3;
+  justify-self: center;
+  width: 200px;
+}
+
 #app-screen-fridge h3 {
   margin-bottom: 10px;
   font-size: 27px;
@@ -343,7 +523,27 @@ body #app-container #app-bottom #app-bottom-info #app-bottom-about-info a {
   margin-bottom: 10px;
 }
 #app-screen-fridge #fridge-ingredient-container {
+  min-height: 250px;
   margin-bottom: 10px;
+}
+#app-screen-fridge #fridge-ingredient-container .fridge-no-ingredients {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 100px 0px;
+}
+#app-screen-fridge #fridge-ingredient-container .fridge-no-ingredients svg {
+  width: 50px;
+  height: 50px;
+  fill: var(--grey_color2);
+  margin-bottom: 10px;
+}
+#app-screen-fridge #fridge-ingredient-container .fridge-no-ingredients span {
+  font-size: 22px;
+  color: var(--grey_color2);
+}
+#app-screen-fridge #fridge-ingredient-container .cart-list-no-ingredients {
+  padding-bottom: 520px;
 }
 #app-screen-fridge #fridge-ingredient-container .fridge-ingredient {
   border-bottom: solid 1px var(--grey_color1);
@@ -360,6 +560,7 @@ body #app-container #app-bottom #app-bottom-info #app-bottom-about-info a {
   border: none;
   width: 100%;
   text-overflow: ellipsis;
+  background: none;
 }
 #app-screen-fridge #fridge-ingredient-container .fridge-ingredient .fridge-ingredient-name .fridge-ingredient-name-input:focus {
   outline: none;
@@ -475,6 +676,7 @@ body #app-container #app-bottom #app-bottom-info #app-bottom-about-info a {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 320px;
 }
 #app-screen-fridge #fridge-cooking-container h3 #ingredient-cook-total {
   font-size: 12px;
@@ -485,6 +687,22 @@ body #app-container #app-bottom #app-bottom-info #app-bottom-about-info a {
   flex-flow: row wrap;
   justify-content: center;
   margin-bottom: 10px;
+}
+#app-screen-fridge #fridge-cooking-container #fridge-cooking-list .cook-no-ingredients {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 100px 0px;
+}
+#app-screen-fridge #fridge-cooking-container #fridge-cooking-list .cook-no-ingredients svg {
+  width: 50px;
+  height: 50px;
+  fill: var(--grey_color2);
+  margin-bottom: 10px;
+}
+#app-screen-fridge #fridge-cooking-container #fridge-cooking-list .cook-no-ingredients span {
+  font-size: 22px;
+  color: var(--grey_color2);
 }
 #app-screen-fridge #fridge-cooking-container #fridge-cooking-list .cook-ingredient {
   display: inline-block;
@@ -692,9 +910,17 @@ body #app-container #app-bottom #app-bottom-info #app-bottom-about-info a {
   color: var(--green_color1);
 }
 .recipe-dialog-box .dialog-box-recipe-container h3 {
+  position: relative;
   color: var(--green_color1);
   font-weight: 400;
   margin: 5px 0;
+}
+.recipe-dialog-box .dialog-box-recipe-container h3 svg {
+  width: 20px;
+  fill: var(--green_color1);
+  position: absolute;
+  left: 9px;
+  bottom: 0px;
 }
 .recipe-dialog-box .dialog-box-recipe-container .recipe-ingredient-list {
   overflow: scroll;
@@ -706,8 +932,28 @@ body #app-container #app-bottom #app-bottom-info #app-bottom-about-info a {
   margin-bottom: 10px;
 }
 .recipe-dialog-box .dialog-box-recipe-container .recipe-ingredient-list .recipe-ingredient {
+  display: grid;
+  grid-template-columns: max-content auto;
+  align-items: center;
   padding: 5px 0px;
   border-bottom: solid 2px var(--grey_color2);
+}
+.recipe-dialog-box .dialog-box-recipe-container .recipe-ingredient-list .recipe-ingredient .recipe-ingredient-grocery-checkbox {
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+  width: 18px !important;
+  height: 18px !important;
+  background: white;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 10px;
+  border: 2px solid white;
+  box-shadow: 0 0 0px 2px var(--green_color1);
+  cursor: pointer;
+}
+.recipe-dialog-box .dialog-box-recipe-container .recipe-ingredient-list .recipe-ingredient .recipe-ingredient-grocery-checkbox:checked {
+  background: var(--green_color1);
 }
 .recipe-dialog-box .dialog-box-recipe-container .recipe-ingredient-list .recipe-ingredient:last-child {
   padding-bottom: 20px;
@@ -750,6 +996,19 @@ body #app-container #app-bottom #app-bottom-info #app-bottom-about-info a {
   fill: var(--red_color1);
 }
 
+#app-screen-grocery h3 {
+  font-size: 27px;
+  font-weight: 400;
+  text-align: center;
+  color: var(--green_color1);
+  margin-bottom: 10px;
+}
+#app-screen-grocery h3 span {
+  display: block;
+  font-size: 12px;
+  color: var(--grey_color1);
+}
+
 @media (min-width: 400px) and (max-width: 600px) {
   .category-buttons-array {
     display: grid;
@@ -764,7 +1023,10 @@ body #app-container #app-bottom #app-bottom-info #app-bottom-about-info a {
     justify-items: center;
   }
   #search-screen-search-recipes {
-    padding-bottom: 320px !important;
+    padding-bottom: 420px !important;
+  }
+  #cart-options-container {
+    padding-bottom: 300px;
   }
   #app-bottom {
     height: 300px;
@@ -772,7 +1034,7 @@ body #app-container #app-bottom #app-bottom-info #app-bottom-about-info a {
     bottom: 0;
     left: 0;
     bottom: -260px;
-    opacity: 0.5;
+    opacity: 0.8;
     background: rgba(0, 0, 0, 0.8);
   }
   #app-bottom #app-bottom-info {
