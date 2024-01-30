@@ -14,56 +14,17 @@
     --grey_color4: rgb(152, 152, 152);
 }
 
+// ######################################################################################
+// ######################   TOP LEVEL CSS   #############################################
+// ######################################################################################
+
 *{
     font-family: inter;
     margin: 0;
     box-sizing: border-box;
 }
-#app-background{
-    z-index: 0;
-    // background: black;
-    position: fixed;
-    top: 0px;
-    left: 0;
-    width: 100%;
-    height: 200%;
-    opacity: 0.085;
-    *{
-        position: fixed;
-        z-index: 0;
-        transform: scale(2);
-    }
-    #background_image1{
-        right: 0;
-        top: 1600px;
-    }
-    #background_image2{
-        left: 10%;
-        top: 1000px;
-        transform: scale(-2, 2);
-    }
-    #background_image3{
-        right: 10%;
-        top: 400px;
-    }
-    #background_image4{
-        top: 2200px;
-        right: 15%;
-    }
-    #background_image5{
-        top: 100px;
-        left: 10%;
-    }
-}
-#app-container{
-    position: relative;
-    z-index: 1;
-    min-height: 1000px;
-}
+
 body{
-    // position: relative;
-    // z-index: 1;
-    // padding-bottom: 500px;
     &::-webkit-scrollbar {
         width: 14px;
     }
@@ -77,8 +38,9 @@ body{
         background-clip: content-box;
     }
     #app-container{
-        // padding: 0px 3%;
+        position: relative;
         z-index: 1;
+        min-height: 1000px;
         max-width: 1200px;
         margin: auto;
         #app-options, #app-screens, #app-bottom{
@@ -134,15 +96,15 @@ body{
                 #grocery-list-app-option-button{
                     position: relative;
                     #grocery-list-count-badge{
-                        display: block;   
+                        display: flex;   
                         position: absolute;
-                        padding: 0px 8px;
+                        padding: 2px 8px;
                         justify-content: center;
                         top: -10px;
                         right: -5px;
                         background: var(--green_color1);
                         color: white;
-                        border-radius: 10px;
+                        border-radius: 20px;
                     }
                 }
                 @keyframes app-option-hovered{
@@ -182,6 +144,7 @@ body{
                 }
                 
                 #search-screen-categories{
+                    // border: solid 1px red;
                     .category-type-container{
                         padding-bottom: none !important;
                         padding: none;
@@ -315,241 +278,62 @@ body{
         }
     }
 }
-.form-bar{
-    display: grid;
+#app-background{
+    z-index: 0;
+    // background: black;
+    position: fixed;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    opacity: 0.085;
+    *{
+        position: fixed;
+        z-index: 0;
+        transform: scale(2);
+    }
+    #background_image1{
+        right: 0;
+        top: 1600px;
+    }
+    #background_image2{
+        left: 10%;
+        top: 1000px;
+        transform: scale(-2, 2);
+    }
+    #background_image3{
+        right: 10%;
+        top: 400px;
+    }
+    #background_image4{
+        top: 2200px;
+        right: 15%;
+    }
+    #background_image5{
+        top: 100px;
+        left: 10%;
+    }
+}
+
+
+// ######################################################################################
+// ######################   COOK RECIPE   ###############################################
+// ######################################################################################
+
+#fridge-cooking-container{
+    // When searching for recipes containing food tags in 'Search Fridge' menu
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    grid-template-columns: auto max-content;
-    border: solid 2px var(--grey_color2);
-    padding: 0px 0px 0px 10px;
-    border-radius: 25px;
-    margin-top: 10px;
-    .form-bar-input{
-        border: none;
-        font-size: 16px;
-        &:focus{
-            outline: none;
-        }
-    }
-    .form-bar-submit{
-        display: flex;
-        border: none;
-        box-shadow: 0 0 3px 1px var(--grey_color2) inset;
-        padding: 3px 15px;
-        border-radius: 25px;
-        cursor: pointer;
-        .form-bar-button-image{
-            width: 22px;
-            height: 22px;
-            fill: var(--grey_color1);
-        }
-        .new-input-style{
-            border: none;
-            fill: var(--green_color1);
-        }
-        
-        @keyframes search-button-hovered{
-            from{
-                fill: var(--grey_color1);
-            }
-            to{
-                fill: var(--green_color1);
-            }
-        }
-    }
-}
-.new-input-style{
-    border: solid 2px var(--green_color1);
-}
-
-// Groceries
-
-#grocery-list-ingredient-container, #cart-list-ingredient-container{
-    margin-bottom: 10px;
-    min-height: 200px;
-    .grocery-list-no-ingredients, .cart-list-no-ingredients{
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        padding: 100px 0px;
-        svg{
-            width: 50px;
-            height: 50px;
-            fill: var(--grey_color2);
-        }
-        span{
-            font-size: 22px;
-            color: var(--grey_color2)
-        }
-    }
-    // .cart-list-no-ingredients{
-    //     padding-bottom: 520px;
-    // }
-    .grocery-ingredient, .cart-ingredient{
-        border-bottom: solid 1px var(--grey_color1);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 0px;
-        .grocery-ingredient-name, .cart-ingredient-name{
-            width: 100%;
-            .grocery-ingredient-name-input, .cart-ingredient-name-input{
-                font-size: 18px;
-                border: none;
-                width: 100%;
-                text-overflow: ellipsis;
-                background: none;
-                &:focus{
-                    outline: none;
-                    color: var(--green_color1);
-                    caret-color: black;
-                    background: var(--green_color2);
-                }
-            }
-            .cart-ingredient-name-input{
-                pointer-events: none;
-                user-select: none;
-            }
-        }
-
-        .grocery-ingredient-options, .cart-ingredient-options{
-            display: flex;
-            align-items: center;
-            z-index: 2;
-            position: relative;
-            width: 143px;
-            justify-content: right;
-            // Main grocery remove/cart buttons
-            button{
-                border: none;
-                background: none;
-                margin-left: 5px;
-                fill: var(--grey_color1);
-                cursor: pointer;
-                &:first-child{
-                    margin-left: 0;
-                }
-                svg{
-                    box-sizing: border-box;
-                    width: 20px;
-                    height: 20px;
-                }
-            }
-            .remove-option, .decart-option{
-                fill: var(--red_color1);
-            }
-            .infridge-option-unavailable{
-                fill: var(--red_color1);
-            }
-            .infridge-option-available{
-                fill: var(--green_color1);
-            }
-            .cart-option, .decart-option{
-                transform: scale(1.175);
-            }
-            .remove-option{
-                transform: scale(0.925);
-            }
-            // remove
-            .grocery-remove-options, .grocery-cart-options, .grocery-infridge-options{
-                z-index: 3;
-                position: absolute;
-                right: 0;
-                box-sizing: content-box;
-                width: 0%;
-                display: none;
-                grid-template-columns: 65% auto;
-
-                button{
-                    padding: 10px 0px;
-                    margin: 0;
-                    color: white;
-                }
-                .confirm{
-                    fill: white;
-                    background: rgb(240, 0, 0);
-                    &:hover{
-                        background: red;
-                    }
-                }
-                .cancel{
-                    fill: var(--grey_color1);
-                    background: var(--grey_color2);
-                    &:hover{
-                        fill: var(--grey_color1);
-                        background: var(--grey_color3);
-                    }
-                }
-            }
-            .grocery-cart-options, .grocery-infridge-options{
-                .confirm{
-                    background: rgb(30, 131, 34);
-                    &:hover{
-                        background: var(--green_color1)
-                    }
-                }
-            }
-        }
-    }
-}
-#shopping-cart-options-text{
-    color: var(--grey_color2);
-    padding-bottom: 3px;
-    margin-bottom: 0;
-    border-bottom: solid 2px var(--grey_color2);
-    text-align: center;
-}
-#cart-options-container{
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 100% 100%;
-    margin-top: 20px;
-    margin-bottom: 100px;
-    justify-content: center;
-    justify-items: center;
-    button{
-        font-size: 18px;
-        padding: 5px 10px;
-        background: var(--grey_color3);
-        border: none;
-        border-radius: 10px;
-        margin: 0px 5px;
-        height: 40px;
-        width: 150px;
-        cursor: pointer;
-        &:hover{
-            animation: animate-explore-ingredients-hovered 0.3s forwards;
-        }
-        &:active{
-            background: var(--grey_color2);
-        }
-        &:last-child{
-            color: white;
-            background: var(--green_color1);
-            grid-column: 1/3;
-            justify-self: center;
-            width: 200px;
-        }
-    }
-}
-
-#app-screen-fridge{
+    padding-bottom: 320px;
     h3{
-        margin-bottom: 10px;
-        font-size: 27px;
-        font-weight: 400;
-        text-align: center;   
-        color: var(--green_color1);
-        #fridge-screen-total{
+        #ingredient-cook-total{
             font-size: 12px;
-            color: var(--grey_color1);
+            color: var(--grey_color1);               
         }
     }
-    #tag-bar-form{
-        margin-bottom: 10px;
-    }
-    #fridge-ingredient-container{
-        min-height: 250px;
-        .fridge-no-ingredients{
+    #fridge-cooking-list{
+        .cook-no-ingredients{
             display: flex;
             align-items: center;
             flex-direction: column;
@@ -565,349 +349,98 @@ body{
                 color: var(--grey_color2)
             }
         }
-        .cart-list-no-ingredients{
-            padding-bottom: 520px;
-        }
-        .fridge-ingredient{
-            border-bottom: solid 1px var(--grey_color1);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 0px;
-            // Base Igredient Style (available)
-            .fridge-ingredient-name{
-                width: 100%;
-                .fridge-ingredient-name-input{
-                    font-size: 18px;
-                    border: none;
-                    width: 100%;
-                    text-overflow: ellipsis;
-                    background: none;
-                    &:focus{
-                        outline: none;
-                        color: var(--green_color1);
-                        caret-color: black;
-                        background: var(--green_color2);
-                    }
-                }
-            }
-            // Ingredient Style when NOT available (unavailable)
-            
-            .fridge-ingredient-options{
-                display: flex;
-                align-items: center;
-                z-index: 2;
-                position: relative;
-                button{
-                    border: none;
-                    background: none;
-                    margin-left: 5px;
-                    fill: var(--grey_color1);
-                    cursor: pointer;
-                    &:first-child{
-                        margin-left: 0;
-                    }
-                    svg{
-                        box-sizing: border-box;
-                        width: 20px;
-                        height: 20px;
-                    }
-                    &:hover{
-                        animation: fridge-option-button-hovered 0.3s forwards;
-                    }
-                    &.delete-option:hover{
-                        animation: none;
-                        fill: var(--red_color1) !important;
-                    }
-                    
-                    @keyframes fridge-option-button-hovered{
-                        from{
-                            fill: var(--grey_color1);
-                        }
-                        to{
-                            fill: var(--green_color1);
-                        }
-                    }
-                }
-                .grocery-option{
-                    transform: scale(1.15);
-                }
-                .cook-option{
-                    transform: scale(1.1);
-                }
-                .cooking-list{
-                    fill: var(--orange_color1);
-                }
-                .grocery-list{
-                    fill: var(--green_color1);
-                    &:hover{
-                        animation: grocery-list-decolor 0.3s forwards;
-                    }
-                    @keyframes grocery-list-decolor{
-                        from{
-                            fill: var(--green_color1);
-                        }
-                        to{
-                            fill: var(--grey_color1);
-                        }
-                    }
-                }
-                
-                .ingredient-delete-options{
-                    z-index: 3;
-                    position: absolute;
-                    right: 0;
-                    box-sizing: content-box;
-                    width: 0%;
-                    display: none;
-                    grid-template-columns: 65% auto;
-                    button{
-                        padding: 10px 0px;
-                        margin: 0;
-                        color: white;
-                    }
-                    .delete{
-                        fill: white;
-                        background: rgb(240, 0, 0);
-                        &:hover{
-                            animation: none;
-                            fill: white;    
-                            background: red;
-                        }
-                    }
-                    .cancel{
-                        fill: var(--grey_color1);
-                        background: var(--grey_color2);
-                        &:hover{
-                            animation: none;
-                            fill: var(--grey_color1);
-                            background: var(--grey_color3);
-                        }
-                    }
-                }
-            }
-        }
-        .fridge-ingredient-unavailable{
-            .fridge-ingredient-name{
-                input{
-                    color: var(--red_color1);
-                }
-                opacity: 0.75;
-            }
-            .fridge-ingredient-options{
-                .fridge-option{
-                    fill: var(--red_color1);
-                }
-                .cook-option{
-                    fill: var(--red_color1);
-                    pointer-events: none;
-                }
-            }
-        }
-        margin-bottom: 10px;
-    }
-    #fridge-cooking-container{
-        // When searching for recipes containing food tags in 'Search Fridge' menu
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-bottom: 320px;
-        h3{
-            #ingredient-cook-total{
-                font-size: 12px;
-                color: var(--grey_color1);               
-            }
-        }
-        #fridge-cooking-list{
-            .cook-no-ingredients{
-                display: flex;
-                align-items: center;
-                flex-direction: column;
-                padding: 100px 0px;
-                svg{
-                    width: 50px;
-                    height: 50px;
-                    fill: var(--grey_color2);
-                    margin-bottom: 10px;
-                }
-                span{
-                    font-size: 22px;
-                    color: var(--grey_color2)
-                }
-            }
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: center;
-            margin-bottom: 10px;
-            .cook-ingredient{
-                display: inline-block;
-                overflow-wrap: break-word;
-                word-break: break-word;
-                color: var(--orange_color1);
-                background: var(--orange_color2);
-                border-radius: 15px;
-                padding: 5px 10px;
-                margin: 0px 2px 2px 2px;
-            }
-        }
-        #fridge-explore-ingredients-button{
-            font-size: 18px;
-            padding: 5px 10px;
-            background: var(--grey_color3);
-            border: none;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            &:hover{
-                animation: animate-explore-ingredients-hovered 0.3s forwards;
-            }
-            &:active{
-                background: var(--grey_color2);
-            }
-        }
-        @keyframes animate-explore-ingredients-hovered{
-            from{
-                color: black;
-            }
-            to{
-                color: var(--orange_color1);
-            }
-        }
-        #fridge-cooking-recipes-list{
-            display: flex;
-            justify-content: space-evenly;
-            width: 100%;
-        }
-    }
-    #fridge-cook-recipe-container{
-        // Selected to actively cook a recipe
-        display: flex;
-        flex-direction: column;
+        flex-flow: row wrap;
         justify-content: center;
-        border: solid 1px var(--grey_color2);
-        padding: 10px;
-        margin-bottom: 50px;
-        background: rgb(242, 242, 242);
-        border-radius: 10px;
-        display: none;
-        max-width: 450px;
-        .cook-recipe-image{
-            width: 100%;
-            height: 260px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 5px;
-        }
-        .cook-recipe-info{
-            display: grid;
-            grid-template-columns: auto auto;
-            justify-content: space-around;
-            margin-bottom: 10px;
-            div{
-                text-align: center;
-                span{
-                    color: var(--green_color1);
-                    font-weight: bolder;
-                    a{
-                        text-decoration: none;
-                        color: green;
-                    }
-                }
-            }
-        }
-        .cook-recipe-line{
-            padding: 5px 0px;
-            border-bottom: solid 2px var(--grey_color2);
-        }
-        .cook-recipe-line:last-child{
-            border-bottom: none;
+        margin-bottom: 10px;
+        .cook-ingredient{
+            display: inline-block;
+            overflow-wrap: break-word;
+            word-break: break-word;
+            color: var(--orange_color1);
+            background: var(--orange_color2);
+            border-radius: 15px;
+            padding: 5px 10px;
+            margin: 0px 2px 2px 2px;
         }
     }
-}
-
-.no-recipes-found{
-    font-size: 22px;
-    color: var(--grey_color1);
-    fill: var(--grey_color1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: auto;
-    padding: 200px 0px !important;
-    .no-recipe-found-image{
-        margin-top: 20px;
-        width: 50px;
-        height: 50px;
-    }
-}
-.no-recipes-searched{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 200px 0px !important;
-    opacity: 0.25;
-    img{
-        max-width: 160px;
-        filter: contrast(0);
-    }
-    p{
+    #fridge-explore-ingredients-button{
         font-size: 18px;
-        margin-top: 20px;
-        text-align: center;
-    }
-}
-.recipe-container{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 300px;
-    margin: 5px !important;
-    border: solid 1px var(--grey_color2);
-    padding: 8px;
-    background: rgb(242, 242, 242);
-    border-radius: 10px;
-    .recipe-image{
-        border-radius: 6px;
-        max-height: 200px;
-        object-fit: cover;
-    }
-    .recipe-label{
-        color: var(--green_color1);
-        font-size: 20px;
-        padding: 10px 0px;
-    }
-    .recipe-info{
-        div{
-            padding-bottom: 4px !important;
-            margin-bottom: none;
-            span{
-                font-weight: bolder;
-                color: var(--green_color1);
-            }
-        }    
-    }
-    .recipe-ingredient-expand{
-        margin-top: auto;
-        padding: 4px;
-        border-radius: 6px;
-        border: solid 1px var(--grey_color2);
-        font-size: 16px;
+        padding: 5px 10px;
+        background: var(--grey_color3);
+        border: none;
+        border-radius: 10px;
+        margin-bottom: 10px;
         cursor: pointer;
-        &:hover{animation: recipe-ingredients-expand-hovered .4s forwards}
+        &:hover{
+            animation: animate-explore-ingredients-hovered 0.3s forwards;
+        }
+        &:active{
+            background: var(--grey_color2);
+        }
     }
-    @keyframes recipe-ingredients-expand-hovered{
+    @keyframes animate-explore-ingredients-hovered{
         from{
             color: black;
         }
         to{
-            color: var(--green_color1);
-            background: var(--grey_color3);
+            color: var(--orange_color1);
         }
+    }
+    #fridge-cooking-recipes-list{
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+    }
+}
+#fridge-cook-recipe-container{
+    // Selected to actively cook a recipe
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: solid 1px var(--grey_color2);
+    padding: 10px;
+    margin-bottom: 50px;
+    background: rgb(242, 242, 242);
+    border-radius: 10px;
+    display: none;
+    max-width: 450px;
+    .cook-recipe-image{
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 5px;
+    }
+    .cook-recipe-info{
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: space-around;
+        margin-bottom: 10px;
+        div{
+            text-align: center;
+            span{
+                color: var(--green_color1);
+                font-weight: bolder;
+                a{
+                    text-decoration: none;
+                    color: green;
+                }
+            }
+        }
+    }
+    .cook-recipe-line{
+        padding: 5px 0px;
+        border-bottom: solid 2px var(--grey_color2);
+    }
+    .cook-recipe-line:last-child{
+        border-bottom: none;
     }
 }
 
+// ######################################################################################
+// ######################   DIALOG BOX   ################################################
+// ######################################################################################
 .recipe-dialog-box{
     z-index: 5;
     position: fixed;
@@ -1033,22 +566,360 @@ body{
     }
 }
 
-// GROCERY LIST
-#app-screen-grocery{
+// ######################################################################################
+// ######################   VARIOUS   ###################################################
+// ######################################################################################
+h3{
+    font-size: 27px;
+    font-weight: 400;
+    text-align: center; 
+    color: var(--green_color1);
+    margin-bottom: 10px;
+    span{
+        display: block;
+        font-size: 12px;
+        color: var(--grey_color1);
+    }
+}
+
+#calories-range-container{
+    display: flex;
+    align-items: center;
     h3{
-        font-size: 27px;
-        font-weight: 400;
-        text-align: center; 
+        display: inline;
+        font-size: 22px !important;
+        font-weight: 400px;
+        margin-right: auto;
+        margin-left: 5px;
+    }
+    input, span{
+        margin-left: 10px;
+    }
+    input{
+        max-width: 80px;
+        box-sizing: border-box;
+    }
+}
+
+.no-recipes-found{
+    font-size: 22px;
+    color: var(--grey_color1);
+    fill: var(--grey_color1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    padding: 200px 0px !important;
+    .no-recipe-found-image{
+        margin-top: 20px;
+        width: 50px;
+        height: 50px;
+    }
+}
+.no-recipes-searched{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 200px 0px !important;
+    opacity: 0.25;
+    img{
+        max-width: 160px;
+        filter: contrast(0);
+    }
+    p{
+        font-size: 18px;
+        margin-top: 20px;
+        text-align: center;
+    }
+}
+.recipe-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    margin: 5px !important;
+    border: solid 1px var(--grey_color2);
+    padding: 8px;
+    background: rgb(242, 242, 242);
+    border-radius: 10px;
+    .recipe-image{
+        border-radius: 6px;
+        max-height: 200px;
+        object-fit: cover;
+    }
+    .recipe-label{
         color: var(--green_color1);
-        margin-bottom: 10px;
-        span{
-            display: block;
-            font-size: 12px;
-            color: var(--grey_color1);
+        font-size: 20px;
+        padding: 10px 0px;
+    }
+    .recipe-info{
+        div{
+            padding-bottom: 4px !important;
+            margin-bottom: none;
+            span{
+                font-weight: bolder;
+                color: var(--green_color1);
+            }
+        }    
+    }
+    .recipe-ingredient-expand{
+        margin-top: auto;
+        padding: 4px;
+        border-radius: 6px;
+        border: solid 1px var(--grey_color2);
+        font-size: 16px;
+        cursor: pointer;
+        &:hover{animation: recipe-ingredients-expand-hovered .4s forwards}
+    }
+    @keyframes recipe-ingredients-expand-hovered{
+        from{
+            color: black;
+        }
+        to{
+            color: var(--green_color1);
+            background: var(--grey_color3);
         }
     }
-    
 }
+
+#shopping-cart-options-text{
+    color: var(--grey_color1);
+    padding-bottom: 3px;
+    margin-bottom: 0;
+    border-bottom: solid 2px var(--grey_color1);
+    text-align: center;
+}
+
+#cart-options-container{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 100% 100%;
+    margin-top: 20px;
+    margin-bottom: 100px;
+    justify-content: center;
+    justify-items: center;
+    button{
+        font-size: 18px;
+        padding: 5px 10px;
+        background: var(--grey_color3);
+        border: none;
+        border-radius: 10px;
+        margin: 0px 5px;
+        height: 40px;
+        width: 150px;
+        cursor: pointer;
+        &:hover{
+            animation: animate-explore-ingredients-hovered 0.3s forwards;
+        }
+        &:active{
+            background: var(--grey_color2);
+        }
+        &:last-child{
+            color: white;
+            background: var(--green_color1);
+            grid-column: 1/3;
+            justify-self: center;
+            width: 200px;
+        }
+    }
+}
+
+// ######################################################################################
+// ######################   INPUT BAR   #################################################
+// ######################################################################################
+.calories-input{
+    border: solid 2px var(--grey_color2);
+    padding: 0px 0px 0px 10px;
+    border-radius: 25px;
+    font-size: 16px;
+}
+.form-bar{
+    display: grid;
+    align-items: center;
+    grid-template-columns: auto max-content;
+    border: solid 2px var(--grey_color2);
+    padding: 0px 0px 0px 10px;
+    border-radius: 25px;
+    margin-bottom: 10px;
+    .form-bar-input{
+        border: none;
+        font-size: 16px;
+        &:focus{
+            outline: none;
+        }
+    }
+    .form-bar-submit{
+        display: flex;
+        border: none;
+        box-shadow: 0 0 3px 1px var(--grey_color2) inset;
+        padding: 3px 15px;
+        border-radius: 25px;
+        cursor: pointer;
+        .form-bar-button-image{
+            width: 22px;
+            height: 22px;
+            fill: var(--grey_color1);
+        }
+        .new-input-style{
+            border: none;
+            fill: var(--green_color1);
+        }
+        
+        @keyframes search-button-hovered{
+            from{
+                fill: var(--grey_color1);
+            }
+            to{
+                fill: var(--green_color1);
+            }
+        }
+    }
+}
+.new-input-style{
+    border: solid 2px var(--green_color1);
+}
+
+
+// ######################################################################################
+// ######################   LIST ITEMS   ################################################
+// ######################################################################################
+
+.ingredient-list-container{
+    margin-bottom: 20px;
+    min-height: 300px;    
+    .ingredient-list-item{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0px;
+        border-bottom: solid 1px var(--grey_color1);
+        &:last-child{
+            border-bottom: none;
+        }
+        .ingredient-list-item-name{
+            width: 100%;
+            input{
+                font-size: 18px;
+                border: none;
+                width: 100%;
+                text-overflow: ellipsis;
+                background: none;
+                &:focus{
+                    outline: none;
+                    color: var(--green_color1);
+                    caret-color: black;
+                    background: var(--green_color2);
+                }
+            }
+            .unavailable{
+                opacity: 0.75;
+                color: var(--red_color1);
+            }
+            
+        }
+        .ingredient-list-item-options{
+            display: flex;
+            align-items: center;
+            z-index: 2;
+            position: relative;
+            width: 143px;
+            z-index: 3;
+            justify-content: end;
+            button{
+                border: none;
+                background: none;
+                margin-left: 5px;
+                fill: var(--grey_color1);
+                cursor: pointer;
+                &:first-child{
+                    margin-left: 0;
+                }
+                svg{
+                    box-sizing: border-box;
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+            .unavailable{
+                fill: var(--red_color1);
+            }
+            .cooking{
+                fill: var(--orange_color1);
+            }
+            .cook.unavailable{
+                fill: var(--red_color1);
+                cursor: none;
+                pointer-events: none;
+                touch-action: none !important;
+            }
+            .grocery, .available{
+                fill: var(--green_color1);
+            }
+            .carted{
+                transform: scale(1.15);
+            }
+            .ingredient-list-item-options-nested{
+                z-index: 3;
+                position: absolute;
+                right: 0;
+                box-sizing: content-box;
+                width: 0%;
+                display: none;
+                grid-template-columns: 65% auto;
+                button{
+                    padding: 10px 0px;
+                    margin: 0;
+                    color: white;
+                }
+                .denial{
+                    cursor: pointer;
+                    fill: white;
+                    background: rgb(231, 0, 0);
+                    &:hover{
+                        background: red;
+                    }
+                }
+                .confirm{
+                    cursor: pointer;
+                    fill: white;
+                    background: rgb(0, 152, 0);
+                    &:hover{
+                        background: rgb(0, 177, 0);
+                    }
+                }
+                .cancel{
+                    cursor: pointer;
+                    background: rgb(235, 235, 235);
+                    &:hover{
+                        background: rgb(242, 242, 242);
+                    }
+                }
+            }
+        }
+    }
+}
+.ingredient-list-empty{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 100px 0px;
+    svg{
+        width: 30px;
+        height: 30px;
+        fill: var(--grey_color2);
+        margin-bottom: 10px;
+    }
+    span{
+        font-size: 22px;
+        color: var(--grey_color2)
+    }
+}
+
+// ######################################################################################
+// ######################   MEDIA QUERIES   #############################################
+// ######################################################################################
 
 @media (min-width: 400px) and (max-width: 600px){
     .category-buttons-array{
@@ -1056,13 +927,17 @@ body{
         grid-template-columns: 50% 50%;
     }
 }
+
+
 @media (min-width: 600px){
+    
     #search-screen-search-recipes, #fridge-cooking-recipes-list{
         display: grid;
         grid-template-columns: repeat(2, max(0, 1fr));
         gap: 5px;
         justify-items: center
     }
+
     #search-screen-search-recipes{
         padding-bottom: 420px !important;
     }
@@ -1109,7 +984,7 @@ body{
     }
     
 }
-@media (min-width: 600px) and (max-width: 800px){
+@media (min-width: 600px) and (max-width: 799px){
     .category-buttons-array{
         display: grid;
         grid-template-columns: 25% 25% 25% 25%;
@@ -1117,6 +992,16 @@ body{
     
 }
 @media (min-width: 800px){
+    #calories-range-container{
+        flex-direction: column;
+        align-items: start;
+        *{
+            margin-bottom: 10px;
+        }
+        input{
+            margin-left: 0;
+        }
+    }
     #search-screen-categories{
         top: 30px;
         padding-bottom: 300px !important;
@@ -1126,6 +1011,7 @@ body{
         margin-right: 30px;
         .category-type-container{
             padding-bottom: 0px;
+            margin-bottom: 0;
             .category-compact-button{
                 pointer-events: none;
                 img{

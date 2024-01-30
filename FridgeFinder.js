@@ -67,6 +67,12 @@ let fridge = {
         })
         this.saveFridgeState();
     },
+    doneCooking(){
+        this.ingredients = this.ingredients.map((item)=>{
+            return {...item, cook: false}
+        })
+        this.saveFridgeState();
+    },
     cartAllAction(type){
         if(type == 'decart'){
             // Decart all carted

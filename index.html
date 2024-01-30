@@ -36,7 +36,6 @@
                     <button class="app-option" value="search">Recipes</button>
                     <button class="app-option" value="fridge">Fridge</button>
                     <button class="app-option" value="grocery" id="grocery-list-app-option-button">Groceries<div id='grocery-list-count-badge'></div></button>
-                    <!-- <button class="app-option" value="About" id="grocery-list-app-option-button">About<div id='grocery-list-count-badge'></div></button> -->
                 </div>
             </div>
             <div id="app-screens">
@@ -92,6 +91,12 @@
                                 <button value='nutritional ' class='search_category'>Nutrition</button>
                             </div>
                         </div>
+                        <div id="calories-range-container">
+                            <h3>Calories</h3>
+                            <input type="number" placeholder="min" class="calories-input" min=0 value=0 id="calorie-range-min">
+                            <span>to</span>
+                            <input type="number" placeholder="max" class="calories-input" max=3000 value=2000 id="calorie-range-max">
+                        </div>
                     </div>
                     <div id='search-screen-search-bar'>
                         <h3>
@@ -116,7 +121,7 @@
                 <div id="app-screen-fridge" class="app-screen">
                     <h3>
                         Fridge
-                        <div id="fridge-screen-total"></div>
+                        <span id="fridge-screen-total"></span>
                     </h3>
                     <div id="fridge-screen-tag-bar" >
                         <form id="tag-bar-form" class="form-bar">
@@ -128,7 +133,7 @@
                             </button>
                         </form>
                     </div>
-                    <div id='fridge-ingredient-container'></div>
+                    <div id='fridge-ingredient-container' class="ingredient-list-container"></div>
                     <div id="fridge-cooking-container">
                         <h3>
                             Cook
@@ -155,13 +160,13 @@
                             </button>
                         </form>
                     </div>
-                    <div id="grocery-list-ingredient-container"></div>
+                    <div id="grocery-list-ingredient-container" class="ingredient-list-container"></div>
                     <h3>
                         Shopping Cart
                         <span id="cart-list-total"></span>
                     </h3>
                     <div class="grocery-screen-info"></div>
-                    <div id="cart-list-ingredient-container"></div>
+                    <div id="cart-list-ingredient-container" class="ingredient-list-container"></div>
                     <p id="shopping-cart-options-text">
                         Shopping Cart Options
                     </p>

@@ -1,6 +1,6 @@
 // Initial setup. 
 $(document).ready(()=>{
-    $('.app-option')[2].click();
+    $('.app-option')[1].click();
 })
 
 // Find Recipes/ Search Fridge/ Shopping List Button UI Change
@@ -179,7 +179,7 @@ $('#tag-bar-form').on('submit', (event)=>{
 })
 
 function updateFridgeIngredientDisplay(){
-    let ingredientsHTML = ``;
+    let fridgeListHTML = ``;
     let ingredients = fridge.getIngredients();
     let Cooking = fridge.getIngredients().filter((item)=>{
         if(item.cook && item.available) return true;
@@ -191,55 +191,54 @@ function updateFridgeIngredientDisplay(){
     $('#fridge-screen-total').text(`${ingredients.length} ingredients`);
     
     if(!ingredients.length){
-        ingredientsHTML =  (
-            `<div class='fridge-no-ingredients'>
+        fridgeListHTML =  (
+            `<div class='ingredient-list-empty'>
                 ${getUISVGSymbol('fridge')}
                 <span>Fridge is empty</span>
             </div>`
         )
     }
     else{
-        ingredientsHTML = fridge.getIngredients().map((ingredient)=>{
+        fridgeListHTML = fridge.getIngredients().map((ingredient)=>{
             return (
-                `<div class='fridge-ingredient ${(ingredient.available) ? '' : 'fridge-ingredient-unavailable'}'>
-                    <div class='fridge-ingredient-name'>
+                `<div class='ingredient-list-item'>
+                    <div class='ingredient-list-item-name'>
                         <input type='text' 
                             value='${ingredient.name}' 
-                            class='fridge-ingredient-name-input' 
+                            class='${!ingredient.available ? 'unavailable' : ''}'
                             onFocus='ingredientFocus(this, true)' 
                             onBlur='ingredientFocus(this,false)'
                             onInput="alterIngredientName('${ingredient.id}', this, 'fridge')"
                         >
                     </div>
-                    <div class='fridge-ingredient-options'>
+                    <div class='ingredient-list-item-options'>
                         <button 
-                            class='fridge-ingredient-option-button delete-option' 
                             onClick="fridgeAction('${ingredient.id}', 'delete')">
                             ${getUISVGSymbol('delete')}
                         </button>
-                        <button 
-                            class='fridge-ingredient-option-button grocery-option ${(ingredient.grocery || ingredient.carted) ? 'grocery-list': ''}' 
+                        <button
+                            class='${ingredient.grocery ? 'grocery' : ''} ${ingredient.carted ? 'carted' : ''}'
                             onClick="${(ingredient.carted) ? `fridgeAction('${ingredient.id}', 'carted')` : `fridgeAction('${ingredient.id}', 'grocery')`} ">
                             ${(ingredient.carted) ? getUISVGSymbol('carted') : getUISVGSymbol('grocery')}
                         </button>
                         <button 
-                            class='fridge-ingredient-option-button fridge-option' 
-                            onClick="fridgeAction('${ingredient.id}', 'available')">
+                            onClick="fridgeAction('${ingredient.id}', 'available')"
+                            class='${!ingredient.available ? 'unavailable' : ''}'>
                             ${getUISVGSymbol('fridge')}
                         </button>
                         <button 
-                            class='fridge-ingredient-option-button cook-option ${(ingredient.cook) ? 'cooking-list': ''}'' 
-                            onClick="fridgeAction('${ingredient.id}', 'cook')">
+                            onClick="${!ingredient.available ? '' : `fridgeAction('${ingredient.id}', 'cook')`}"
+                            class='cook ${!ingredient.available ? 'unavailable' : ''} ${ingredient.cook ? 'cooking': ''}'>
                             ${getUISVGSymbol('cook')}
                         </button>
-                        <div class='ingredient-delete-options' id='delete-option-id-${ingredient.id}'>
+                        <div class='ingredient-list-item-options-nested' id='delete-option-id-${ingredient.id}'>
                             <button 
-                                class='ingredient-delete-option delete' 
+                                class='denial' 
                                 onClick="fridgeAction('${ingredient.id}', 'deleteConfirm')">
                                 ${getUISVGSymbol('delete')}
                             </button>
                             <button 
-                                class='ingredient-delete-option cancel' 
+                                class='cancel' 
                                 onClick="fridgeAction('${ingredient.id}', 'deleteCancel')">
                                 ${getUISVGSymbol('cancel')}
                             </button>
@@ -249,16 +248,16 @@ function updateFridgeIngredientDisplay(){
             )
         })
     }
-    $('#fridge-ingredient-container').html(ingredientsHTML);
+    $('#fridge-ingredient-container').html(fridgeListHTML);
 
     // Cooking elements
     let cookingHTML = ``
 
     if(!Cooking.length){
         cookingHTML = 
-        `<div class='cook-no-ingredients'>
+        `<div class='ingredient-list-empty'>
             ${getUISVGSymbol('cook')}
-            <span>No Active Recipe!</span>
+            <span>No recipes selected</span>
         </div>`
     }
     else{
@@ -376,6 +375,8 @@ $("#fridge-explore-ingredients-button").on('click', async ()=>{
             justifyContent: 'space-evenly',
             width: '100%'
         })
+        fridge.doneCooking();
+        updateFridgeIngredientDisplay();
     }
     else{
         let selected = ''
@@ -470,6 +471,12 @@ function dialogRecipeAction(target, type, index){
     // Continue with dialog data
     if(type == 'cook'){
         if(isCookActive){
+            // TO DO - This code might be old/ redundant code - at some point you could 
+            // immediately search for new recipes until the 'Finished Cooking ?' cleaning
+            // behavior was added. This may never reach
+
+            console.warn('TO DO - fix this isCookActive behavior ')
+
             isCookActive = 0;
             $('#fridge-cook-recipe-container').fadeOut(400);
             $('#fridge-cooking-recipes-list').fadeIn(400);
@@ -562,17 +569,18 @@ function updateGroceryListDisplay(){
             return true;
         }
     })
+    
     $('#grocery-list-total').text((groceryList.length) ? `Shopping ${groceryList.length} ingredients` : 'Grocery List Empty');
     $('#cart-list-total').text(cartedList.length ? `Carted ${cartedList.length} ingredients` : 'Shopping Cart Empty');
     
-    
     // Grocery List 
-    $('#grocery-list-count-badge').text(groceryList.length)
+    $('#grocery-list-count-badge').html(groceryList.length)
+
     let groceryListHTML = ``
     if(!groceryList.length){
         $('#grocery-list-count-badge').css('display', 'none');
         groceryListHTML = (
-            `<div class='grocery-list-no-ingredients'>
+            `<div class='ingredient-list-empty'>
                 ${getUISVGSymbol('grocery')}
                 <span>No Groceries</span>
             </div>`
@@ -582,52 +590,51 @@ function updateGroceryListDisplay(){
         $('#grocery-list-count-badge').css('display', 'block');
         groceryListHTML = groceryList.map(grocery=>{
             return (
-                `<div class='grocery-ingredient'>
-                    <div class='grocery-ingredient-name'>
+                `<div class='ingredient-list-item'>
+                    <div class='ingredient-list-item-name'>
                         <input type='text'
                             value='${grocery.name}'
-                            class='grocery-ingredient-name-input'
                             onFocus='ingredientFocus(this, true)'
                             onBlur='ingredientFocus(this,false)'
                             onInput="alterIngredientName('${grocery.id}', this, 'grocery')"
                         >
                     </div>
-                    <div class='grocery-ingredient-options'>
+                    <div class='ingredient-list-item-options'>
                         <button 
                             id='grocery-remove-option'
-                            class='grocery-ingredient-option-button remove-option'
                             onClick="groceryAction('${grocery.id}', 'remove')"
                         >
                             ${getUISVGSymbol('cancel')}
                         </button>
                         <button
                             id='grocery-cart-option'
-                            class='grocery-ingredient-option-button cart-option'
+                            class='carted'
                             onClick="groceryAction('${grocery.id}', 'cart')"
                         >
                             ${getUISVGSymbol('carted')}
                         </button>
-                        <div class='grocery-remove-options' id='grocery-remove-options-id-${grocery.id}'>
+
+                        <div class='ingredient-list-item-options-nested' id='grocery-remove-options-id-${grocery.id}'>
                             <button 
-                                class='grocery-remove-option confirm' 
+                                class='denial' 
                                 onClick="groceryAction('${grocery.id}', 'removeConfirm')">
                                 ${getUISVGSymbol('grocery')}
                             </button>
                             <button 
-                                class='grocery-remove-option cancel' 
+                                class='cancel' 
                                 onClick="groceryAction('${grocery.id}', 'removeCancel')">
                                 ${getUISVGSymbol('cancel')}
                             </button>
                         </div>
     
-                        <div class='grocery-cart-options' id='grocery-cart-options-id-${grocery.id}'>
+                        <div class='ingredient-list-item-options-nested' id='grocery-cart-options-id-${grocery.id}'>
                             <button 
-                                class='grocery-cart-option confirm' 
+                                class='confirm' 
                                 onClick="groceryAction('${grocery.id}', 'cartConfirm')">
                                 ${getUISVGSymbol('carted')}
                             </button>
                             <button 
-                                class='grocery-cart-option cancel' 
+                                class='cancel' 
                                 onClick="groceryAction('${grocery.id}', 'cartCancel')">
                                 ${getUISVGSymbol('cancel')}
                             </button>
@@ -644,9 +651,8 @@ function updateGroceryListDisplay(){
     
     if(!cartedList.length){
         // If Nothing in shopping cart, display empty list elements
-        $('#grocery-list-count-badge').css('display', 'none');
         cartedListHTML = (
-            `<div class='cart-list-no-ingredients'>
+            `<div class='ingredient-list-empty'>
                 ${getUISVGSymbol('carted')}
                 <span>Shopping Cart Empty!</span>
             </div>`
@@ -656,39 +662,39 @@ function updateGroceryListDisplay(){
         // Creates Shopping Cart List Elements when elements are carted
         cartedListHTML = cartedList.map((carted)=>{
             return (
-                `<div class='cart-ingredient'>
-                    <div class='cart-ingredient-name'>
+                `<div class='ingredient-list-item'>
+                    <div class='ingredient-list-item-name'>
                         <input type='text'
                             value='${carted.name}'
-                            class='cart-ingredient-name-input'
                             onFocus='ingredientFocus(this, true)'
                             onBlur='ingredientFocus(this,false)'
                             onInput="alterIngredientName('${carted.id}', this, 'grocery')"
                         >
                     </div>
-                    <div class='cart-ingredient-options'>
+                    <div class='ingredient-list-item-options'>
                         <button 
                             id='grocery-infridge-option'
-                            class='grocery-ingredient-option-button decart-option'
+                            class='carted'
                             onClick="groceryAction('${carted.id}', 'decart')"
                         >
                             ${getUISVGSymbol('carted')}
                         </button>
-                        <button 
+                        <button
+                            class='${carted.available ? 'available' : ''}'
                             id='grocery-infridge-option'
-                            class='grocery-ingredient-option-button infridge-option ${(!carted.available) ? 'infridge-option-unavailable': 'infridge-option-available'}'
                             onClick="groceryAction('${carted.id}', 'infridge')"
                         >
                             ${getUISVGSymbol('fridge')}
                         </button>
-                        <div class='grocery-infridge-options' id='grocery-infridge-options-id-${carted.id}'>
+
+                        <div class='ingredient-list-item-options-nested' id='grocery-infridge-options-id-${carted.id}'>
                             <button 
-                                class='grocery-infridge-option confirm' 
+                                class='confirm' 
                                 onClick="groceryAction('${carted.id}', 'infridgeConfirm')">
                                 ${getUISVGSymbol('fridge')}
                             </button>
                             <button 
-                                class='grocery-infridge-option cancel' 
+                                class='cancel' 
                                 onClick="groceryAction('${carted.id}', 'infridgeCancel')">
                                 ${getUISVGSymbol('cancel')}
                             </button>
@@ -710,7 +716,7 @@ function groceryAction(id, action){
         $(`#grocery-remove-options-id-${id}`).animate({width: '100%'}, pace);
     }
     else if(action == 'removeConfirm' || action == 'removeCancel'){
-        $(`#grocery-remove-options-id-${id}`).animate({width: '0%'}, pace - 20)
+        $(`#grocery-remove-options-id-${id}`).animate({width: '0%'}, pace)
         setTimeout(()=>{
             $(`#grocery-remove-options-id-${id}`).css('display','none')
             if(action == 'removeConfirm'){
@@ -844,7 +850,10 @@ $(window).on('scroll', ()=>{
 })
 // Common Functions _________________________________________________________
 
-async function submitRecipeQuery(queryString, count = 18, random = false){
+async function submitRecipeQuery(userInput, count = 18, random = false){
+
+    let queryString = userInput + `&calories=${$('#calorie-range-min').val()}-${$('#calorie-range-max').val()}`
+    
     return searchRecipeAPI(queryString, random).then((response)=>{
         // Save data globally
         exploreData = JSON.parse(response).hits;
