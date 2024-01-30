@@ -194,7 +194,7 @@ function updateFridgeIngredientDisplay(){
         fridgeListHTML =  (
             `<div class='ingredient-list-empty'>
                 ${getUISVGSymbol('fridge')}
-                <span>Fridge is empty</span>
+                <span>Track ingredients inside your fridge here</span>
             </div>`
         )
     }
@@ -257,7 +257,7 @@ function updateFridgeIngredientDisplay(){
         cookingHTML = 
         `<div class='ingredient-list-empty'>
             ${getUISVGSymbol('cook')}
-            <span>No recipes selected</span>
+            <span>Explore recipes and track one to cook</span>
         </div>`
     }
     else{
@@ -582,7 +582,7 @@ function updateGroceryListDisplay(){
         groceryListHTML = (
             `<div class='ingredient-list-empty'>
                 ${getUISVGSymbol('grocery')}
-                <span>No Groceries</span>
+                <span>Going to go grocery shopping? Track it here</span>
             </div>`
         )
     }
@@ -654,7 +654,7 @@ function updateGroceryListDisplay(){
         cartedListHTML = (
             `<div class='ingredient-list-empty'>
                 ${getUISVGSymbol('carted')}
-                <span>Shopping Cart Empty!</span>
+                <span>Move grocery list ingredients here once found</span>
             </div>`
         )
     }
@@ -716,7 +716,7 @@ function groceryAction(id, action){
         $(`#grocery-remove-options-id-${id}`).animate({width: '100%'}, pace);
     }
     else if(action == 'removeConfirm' || action == 'removeCancel'){
-        $(`#grocery-remove-options-id-${id}`).animate({width: '0%'}, pace)
+        $(`#grocery-remove-options-id-${id}`).animate({width: '0%'}, pace   )
         setTimeout(()=>{
             $(`#grocery-remove-options-id-${id}`).css('display','none')
             if(action == 'removeConfirm'){

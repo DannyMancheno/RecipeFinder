@@ -1,0 +1,15 @@
+{
+  "name": "recipefinder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "RecipeFinder.js",
+  "homepage": "https://DannyMancheno.github.io/FridgeMart",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Danny Mancheno",
+  "license": "ISC",
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
+  }
+}

@@ -337,6 +337,7 @@ body #app-container #app-bottom #app-bottom-info #app-bottom-about-info a {
   margin: 0px 2px 2px 2px;
 }
 #fridge-cooking-container #fridge-explore-ingredients-button {
+  color: var(--grey_color1);
   font-size: 18px;
   padding: 5px 10px;
   background: var(--grey_color3);
@@ -669,6 +670,7 @@ h3 span {
   justify-items: center;
 }
 #cart-options-container button {
+  color: var(--grey_color1);
   font-size: 18px;
   padding: 5px 10px;
   background: var(--grey_color3);
@@ -869,12 +871,14 @@ h3 span {
 .ingredient-list-empty svg {
   width: 30px;
   height: 30px;
-  fill: var(--grey_color2);
+  fill: var(--grey_color1);
   margin-bottom: 10px;
 }
 .ingredient-list-empty span {
-  font-size: 22px;
-  color: var(--grey_color2);
+  font-size: 18px;
+  color: var(--grey_color1);
+  margin: 0px 10px;
+  text-align: center;
 }
 
 @media (min-width: 400px) and (max-width: 600px) {
