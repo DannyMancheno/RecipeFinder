@@ -36,8 +36,9 @@ body #app-container {
   max-width: 1200px;
   margin: auto;
 }
-body #app-container #app-options, body #app-container #app-screens, body #app-container #app-bottom {
-  padding: 0 3%;
+body #app-container #app-header, body #app-container #app-options, body #app-container #app-screens {
+  padding-left: max(3%, env(safe-area-inset-left));
+  padding-right: max(3%, env(safe-area-inset-right));
 }
 body #app-container #app-header {
   background: white;
@@ -410,6 +411,9 @@ body #app-container #app-bottom #app-bottom-info #app-bottom-about-info a {
 #fridge-cook-recipe-container .cook-recipe-line:last-child {
   border-bottom: none;
 }
+#fridge-cook-recipe-container button {
+  background: red;
+}
 
 .recipe-dialog-box {
   z-index: 5;
@@ -576,10 +580,10 @@ h3 span {
   margin: auto;
   padding: 200px 0px !important;
 }
-.no-recipes-found .no-recipe-found-image {
+.no-recipes-found svg {
   margin-top: 20px;
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
 }
 
 .no-recipes-searched {
@@ -603,7 +607,6 @@ h3 span {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 300px;
   margin: 5px !important;
   border: solid 1px var(--grey_color2);
   padding: 8px;
@@ -612,7 +615,7 @@ h3 span {
 }
 .recipe-container .recipe-image {
   border-radius: 6px;
-  max-height: 200px;
+  max-height: 240px;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -889,7 +892,7 @@ h3 span {
   #search-screen-search-recipes, #fridge-cooking-recipes-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 5px;
+    gap: 10px;
     justify-items: center;
   }
   #search-screen-search-recipes {

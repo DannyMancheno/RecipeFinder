@@ -1,6 +1,6 @@
 // Initial setup. 
 $(document).ready(()=>{
-    $('.app-option')[0].click();
+    $('.app-option')[1].click();
 })
 
 // Find Recipes/ Search Fridge/ Shopping List Button UI Change
@@ -257,7 +257,7 @@ function updateFridgeIngredientDisplay(){
         cookingHTML = 
         `<div class='ingredient-list-empty'>
             ${getUISVGSymbol('cook')}
-            <span>Explore recipes and track one to cook</span>
+            <span>Select ingredients above to explore recipes</span>
         </div>`
     }
     else{
@@ -362,7 +362,7 @@ function ingredientFocus(target, focus){
 $("#fridge-explore-ingredients-button").on('click', async ()=>{
     if(isCookActive){
         $('#fridge-cook-recipe-container').fadeOut(400);
-        $('#fridge-explore-ingredients-button').text('Explore Selected?');
+        $('#fridge-explore-ingredients-button').text('Explore Selected ?');
         isCookActive = 0;
         $('#fridge-cooking-recipes-list').html(
             `<div class="no-recipes-searched">
@@ -379,23 +379,37 @@ $("#fridge-explore-ingredients-button").on('click', async ()=>{
         updateFridgeIngredientDisplay();
     }
     else{
-        let selected = ''
-        fridge.getIngredients().filter(item=>{
+        let selected_ingredients = fridge.getIngredients().filter(item=>{
             if(item.cook) return true;
-        }).forEach(item =>{
-            selected += `${item.name} `
         })
-        
-        let result =  await submitRecipeQuery(selected, 9, true);
-        if(result[0]){
-            $('#fridge-cooking-recipes-list').html(result[1]);
-            $('#fridge-cooking-recipes-list').css('display', 'grid');
-            $('#fridge-cooking-recipes-list').fadeIn(400);
-        }else{
-            
-            $('#fridge-cooking-recipes-list').html(result[1]);
-            $('#fridge-cooking-recipes-list').css('display', 'flex');
+        if(selected_ingredients.length){
+            let selected = ''
+
+            selected_ingredients.forEach(item =>{
+                selected += `${item.name} `
+            })
+
+            let result =  await submitRecipeQuery(selected, 9, true);
+            if(result[0]){
+                $('#fridge-cooking-recipes-list').html(result[1]);
+                $('#fridge-cooking-recipes-list').css('display', 'grid');
+                $('#fridge-cooking-recipes-list').fadeIn(400);
+            }else{
+                
+                $('#fridge-cooking-recipes-list').html(result[1]);
+                $('#fridge-cooking-recipes-list').css('display', 'flex');
+            }
         }
+        else{
+            console.log('error - no selected');
+            $('#fridge-cooking-recipes-list').html(
+                `<div class='no-recipes-found'>
+                    <div class='no-recipe-found-message'>No recipes found</div>
+                    <div class='no-recipe-found-image'>${getUISVGSymbol('cancel')}</div>
+                </div>`
+            );
+        }
+        
     }
 })
 
@@ -475,7 +489,7 @@ function dialogRecipeAction(target, type, index){
             // immediately search for new recipes until the 'Finished Cooking ?' cleaning
             // behavior was added. This may never reach
 
-            console.warn('TO DO - fix this isCookActive behavior ')
+            console.warn('TO DO - fix this isCookActive behavior, ')
 
             isCookActive = 0;
             $('#fridge-cook-recipe-container').fadeOut(400);
@@ -483,6 +497,8 @@ function dialogRecipeAction(target, type, index){
             $('#fridge-explore-ingredients-button').text('Explore Recipes ?');
         }
         else{
+            console.log('TO DO - this code was reached');
+
             isCookActive = 1;
             $(target).css('fill', 'var(--orange_color1)');
             let recipe = exploreData[index].recipe;
