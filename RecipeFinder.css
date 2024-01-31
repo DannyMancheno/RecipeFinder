@@ -589,13 +589,11 @@ h3 span {
   justify-content: center;
   align-items: center;
   padding: 200px 0px !important;
-  opacity: 0.25;
 }
 .no-recipes-searched img {
-  max-width: 160px;
-  filter: contrast(0);
+  max-width: 60px;
 }
-.no-recipes-searched p {
+.no-recipes-searched span {
   font-size: 18px;
   margin-top: 20px;
   text-align: center;
