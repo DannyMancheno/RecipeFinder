@@ -534,6 +534,7 @@ body #app-container #app-bottom #app-bottom-info #app-bottom-about-info a {
   width: 120px;
   padding: 4px 0;
   fill: var(--grey_color1);
+  color: var(--grey_color1);
   cursor: pointer;
 }
 .recipe-dialog-box .dialog-box-options button svg {

@@ -572,6 +572,7 @@ body{
             width: 120px;
             padding: 4px 0;
             fill: var(--grey_color1);
+            color: var(--grey_color1);
             cursor: pointer;
             svg{
                 margin-right: 5px;
@@ -1119,7 +1120,6 @@ h3{
         height: 100%;
         position: fixed;
         padding: 0px 5%;
-        // border: solid 2px cyan;
     }
     .dialog-box-recipe-container{
         display: grid;
