@@ -420,7 +420,7 @@ $(document).ready(()=>{
 // HTML string function
 let exploreData = ``;
 
-let dev = true;
+let dev = false;
 
 if(dev){
     expandExploredData();

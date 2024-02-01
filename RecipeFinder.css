@@ -180,6 +180,7 @@ body #app-container #app-screens #app-screen-search #search-screen-categories bu
   border: none;
   text-align: left;
   padding-left: 5px;
+  color: var(--grey_color1);
 }
 body #app-container #app-screens #app-screen-search #search-screen-categories button.search_category:hover {
   cursor: pointer;
