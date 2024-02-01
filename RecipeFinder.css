@@ -36,7 +36,11 @@ body #app-container {
   max-width: 1200px;
   margin: auto;
 }
-body #app-container #app-header, body #app-container #app-options, body #app-container #app-screens {
+body #app-container #app-options, body #app-container #app-screens, body #app-container #app-bottom {
+  padding: 0 3%;
+}
+body #app-container #app-options, body #app-container #app-screens {
+  box-sizing: border-box;
   padding-left: max(3%, env(safe-area-inset-left));
   padding-right: max(3%, env(safe-area-inset-right));
 }
@@ -309,23 +313,24 @@ body #app-container #app-bottom #app-bottom-info #app-bottom-about-info a {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  align-items: start;
   margin-bottom: 10px;
+  min-height: 70px;
 }
 #fridge-cooking-container #fridge-cooking-list .cook-no-ingredients {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 100px 0px;
 }
 #fridge-cooking-container #fridge-cooking-list .cook-no-ingredients svg {
-  width: 50px;
-  height: 50px;
-  fill: var(--grey_color2);
+  width: 30px;
+  height: 30px;
+  fill: var(--grey_color1);
   margin-bottom: 10px;
 }
 #fridge-cooking-container #fridge-cooking-list .cook-no-ingredients span {
-  font-size: 22px;
-  color: var(--grey_color2);
+  font-size: 18px;
+  color: var(--grey_color1);
 }
 #fridge-cooking-container #fridge-cooking-list .cook-ingredient {
   display: inline-block;
@@ -411,22 +416,26 @@ body #app-container #app-bottom #app-bottom-info #app-bottom-about-info a {
 #fridge-cook-recipe-container .cook-recipe-line:last-child {
   border-bottom: none;
 }
-#fridge-cook-recipe-container button {
-  background: red;
-}
 
 .recipe-dialog-box {
-  z-index: 5;
-  position: fixed;
+  z-index: 4;
+  position: absolute;
   width: 100%;
   height: 100%;
   top: 0%;
   left: 0%;
   display: flex;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.5);
+}
+.recipe-dialog-box .dialog-box-recipe-background {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.75);
+  z-index: 5;
+  width: 100%;
+  height: 100%;
 }
 .recipe-dialog-box .dialog-box-recipe-container {
+  z-index: 6;
   padding: 10px;
   border-radius: 10px;
   background: white;
@@ -435,6 +444,7 @@ body #app-container #app-bottom #app-bottom-info #app-bottom-about-info a {
   width: 100%;
   max-width: 400px;
   margin: 10px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
 }
 .recipe-dialog-box .dialog-box-recipe-container .recipe-label, .recipe-dialog-box .dialog-box-recipe-container .recipe-calories, .recipe-dialog-box .dialog-box-recipe-container .recipe-yield, .recipe-dialog-box .dialog-box-recipe-container h3 {
   text-align: center;
@@ -443,12 +453,12 @@ body #app-container #app-bottom #app-bottom-info #app-bottom-about-info a {
   border-radius: 6px;
   margin: auto;
   width: 100%;
-  max-height: 280px;
+  max-height: 260px;
   -o-object-fit: cover;
      object-fit: cover;
 }
 .recipe-dialog-box .dialog-box-recipe-container .recipe-label {
-  font-size: 26px;
+  font-size: 22px;
   color: var(--green_color1);
 }
 .recipe-dialog-box .dialog-box-recipe-container h3 {
@@ -456,6 +466,7 @@ body #app-container #app-bottom #app-bottom-info #app-bottom-about-info a {
   color: var(--green_color1);
   font-weight: 400;
   margin: 5px 0;
+  font-size: 14px;
 }
 .recipe-dialog-box .dialog-box-recipe-container h3 svg {
   width: 20px;
@@ -520,16 +531,19 @@ body #app-container #app-bottom #app-bottom-info #app-bottom-about-info a {
 .recipe-dialog-box .dialog-box-options button {
   background: none;
   border: none;
-  width: 33px;
-  height: 33px;
   fill: var(--grey_color1);
   cursor: pointer;
+}
+.recipe-dialog-box .dialog-box-options button svg {
+  width: 30px;
+  height: 30px;
 }
 .recipe-dialog-box .dialog-box-options #dialog-box-cook-option:hover {
   fill: var(--orange_color1);
 }
-.recipe-dialog-box .dialog-box-options #dialog-box-grocery-option {
-  transform: scale(1.25);
+.recipe-dialog-box .dialog-box-options #dialog-box-cancel-option svg {
+  width: 22px;
+  height: 22px;
 }
 .recipe-dialog-box .dialog-box-options #dialog-box-grocery-option:hover {
   fill: var(--green_color1);
@@ -607,6 +621,7 @@ h3 span {
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 360px;
   margin: 5px !important;
   border: solid 1px var(--grey_color2);
   padding: 8px;
@@ -637,7 +652,8 @@ h3 span {
   padding: 4px;
   border-radius: 6px;
   border: solid 1px var(--grey_color2);
-  font-size: 16px;
+  font-size: 18px;
+  color: var(--grey_color1);
   cursor: pointer;
 }
 .recipe-container .recipe-ingredient-expand:hover {

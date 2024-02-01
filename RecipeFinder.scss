@@ -24,6 +24,7 @@
     box-sizing: border-box;
 }
 
+
 body{
     &::-webkit-scrollbar {
         width: 14px;
@@ -44,11 +45,13 @@ body{
         max-width: 1200px;
         margin: auto;
         
-        // #app-options, #app-screens, #app-bottom{
-        //     padding: 0 3%;
-        // }
-        #app-header, #app-options, #app-screens{
+        #app-options, #app-screens, #app-bottom{
+            padding: 0 3%;
+        }
+        #app-options, #app-screens{
             // ios predefined environment variables
+
+            box-sizing: border-box;
             padding-left: max(3%, env(safe-area-inset-left));
             padding-right: max(3%, env(safe-area-inset-right));
         }
@@ -339,26 +342,28 @@ body{
         }
     }
     #fridge-cooking-list{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: start;
+        margin-bottom: 10px;
+        min-height: 70px;
         .cook-no-ingredients{
             display: flex;
             align-items: center;
             flex-direction: column;
-            padding: 100px 0px;
+            // padding: 100px 0px;
             svg{
-                width: 50px;
-                height: 50px;
-                fill: var(--grey_color2);
+                width: 30px;
+                height: 30px;
+                fill: var(--grey_color1);
                 margin-bottom: 10px;
             }
             span{
-                font-size: 22px;
-                color: var(--grey_color2)
+                font-size: 18px;
+                color: var(--grey_color1)
             }
         }
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-        margin-bottom: 10px;
         .cook-ingredient{
             display: inline-block;
             overflow-wrap: break-word;
@@ -443,33 +448,38 @@ body{
     .cook-recipe-line:last-child{
         border-bottom: none;
     }
-    button{
-        background: red;
-    }
+    
 }
 
 // ######################################################################################
 // ######################   DIALOG BOX   ################################################
 // ######################################################################################
 .recipe-dialog-box{
-    z-index: 5;
-    position: fixed;
+    z-index: 4;
+    position: absolute;
     width: 100%;
     height: 100%;
     top: 0%;
     left: 0%;
     display: flex;
     justify-content: center;
-    background: rgba(0,0,0,0.5);
+    .dialog-box-recipe-background{
+        position: absolute;
+        background: rgba(255, 255, 255, 0.75);
+        z-index: 5;
+        width: 100%;
+        height: 100%;
+    }
     .dialog-box-recipe-container{
+        z-index: 6;
         padding: 10px;
         border-radius: 10px;
         background: white;
         height: fit-content;
-
         width: 100%;
         max-width: 400px;
         margin: 10px;
+        box-shadow: 0 0 2px rgba(0,0,0,.8);
         .recipe-label, .recipe-calories, .recipe-yield, h3{
             text-align: center;
         }
@@ -477,11 +487,11 @@ body{
             border-radius: 6px;
             margin: auto;
             width: 100%;
-            max-height: 280px;
+            max-height: 260px;
             object-fit: cover;
         }
         .recipe-label{
-            font-size: 26px;
+            font-size: 22px;
             color: var(--green_color1);
         }
         h3{
@@ -489,6 +499,7 @@ body{
             color: var(--green_color1);
             font-weight: 400;
             margin: 5px 0;
+            font-size: 14px;
             svg{
                 width: 20px;
                 fill: var(--green_color1);
@@ -555,16 +566,25 @@ body{
         button{
             background: none;
             border: none;
-            width: 33px;
-            height: 33px;
+            // width: 33px;
+            // height: 33px;
             fill: var(--grey_color1);
+            // background: red;
             cursor: pointer;
+            svg{
+                // background: blue;
+                // border: solid 1px blue;
+                width: 30px;
+                height: 30px;
+            }
         }
         #dialog-box-cook-option:hover{
             fill: var(--orange_color1);
         }
-        #dialog-box-grocery-option{
-            transform: scale(1.25);
+        #dialog-box-cancel-option{
+            svg{
+                width: 22px; height: 22px;
+            }
         }
         #dialog-box-grocery-option:hover{
             fill: var(--green_color1);
@@ -646,7 +666,7 @@ h3{
     display: flex;
     flex-direction: column;
     width: 100%;
-    // max-width: 300px;
+    max-width: 360px;
     margin: 5px !important;
     border: solid 1px var(--grey_color2);
     padding: 8px;
@@ -677,7 +697,8 @@ h3{
         padding: 4px;
         border-radius: 6px;
         border: solid 1px var(--grey_color2);
-        font-size: 16px;
+        font-size: 18px;
+        color: var(--grey_color1);
         cursor: pointer;
         &:hover{animation: recipe-ingredients-expand-hovered .4s forwards}
     }
