@@ -1452,6 +1452,26 @@ async function expandExploredData(index){
                     ${getUISVGSymbol('grocery')}
                     ${recipe.ingredientLines.length} Ingredients
                 </h3>
+                <div class='dialog-box-options'>
+                    <button 
+                        id='dialog-box-grocery-option'
+                        onClick="dialogRecipeAction(this, 'grocery', ${index})">
+                        ${getUISVGSymbol('grocery')}
+                        Selected
+                    </button>
+                    <button 
+                        id='dialog-box-cook-option'
+                        onClick="dialogRecipeAction(this, 'cook', ${index})">
+                        ${getUISVGSymbol(`cook`)}
+                        Recipe
+                    </button>
+                    <button 
+                        id='dialog-box-cancel-option'
+                        onClick="dialogRecipeAction(this, 'remove')">
+                        ${getUISVGSymbol('cancel')}
+                        Close
+                    </button>
+                </div>
                 <div class='recipe-ingredient-list'>
                     ${ recipe.ingredientLines.map(ingredient => 
                         `<div class='recipe-ingredient'>
@@ -1463,26 +1483,6 @@ async function expandExploredData(index){
                             <div class='recipe-ingredient-string'>${ingredient}</div>
                         </div>`
                     ).join('') }
-                </div>
-                <div class='dialog-box-options'>
-                    <button 
-                        id='dialog-box-cook-option'
-                        onClick="dialogRecipeAction(this, 'cook', ${index})"
-                    >
-                        ${getUISVGSymbol(`cook`)}
-                    </button>
-                    <button 
-                        id='dialog-box-grocery-option'
-                        onClick="dialogRecipeAction(this, 'grocery', ${index})"
-                    >
-                        ${getUISVGSymbol('grocery')}
-                    </button>
-                    <button 
-                        id='dialog-box-cancel-option'
-                        onClick="dialogRecipeAction(this, 'remove')"
-                    >
-                        ${getUISVGSymbol('cancel')}
-                    </button>
                 </div>
             </div>
         </div>`
