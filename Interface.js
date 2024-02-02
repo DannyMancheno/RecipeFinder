@@ -1,6 +1,6 @@
 // Initial setup. 
 $(document).ready(()=>{
-    $('.app-option')[1].click();
+    $('.app-option')[2].click();
     // screen.orientation.lock('portriat');
 })
 
@@ -213,25 +213,27 @@ function updateFridgeIngredientDisplay(){
                         >
                     </div>
                     <div class='ingredient-list-item-options'>
-                        <button 
-                            onClick="fridgeAction('${ingredient.id}', 'delete')">
-                            ${getUISVGSymbol('delete')}
-                        </button>
-                        <button
-                            class='${ingredient.grocery ? 'grocery' : ''} ${ingredient.carted ? 'carted' : ''}'
-                            onClick="${(ingredient.carted) ? `fridgeAction('${ingredient.id}', 'carted')` : `fridgeAction('${ingredient.id}', 'grocery')`} ">
-                            ${(ingredient.carted) ? getUISVGSymbol('carted') : getUISVGSymbol('grocery')}
-                        </button>
-                        <button 
-                            onClick="fridgeAction('${ingredient.id}', 'available')"
-                            class='${!ingredient.available ? 'unavailable' : ''}'>
-                            ${getUISVGSymbol('fridge')}
-                        </button>
-                        <button 
-                            onClick="${!ingredient.available ? '' : `fridgeAction('${ingredient.id}', 'cook')`}"
-                            class='cook ${!ingredient.available ? 'unavailable' : ''} ${ingredient.cook ? 'cooking': ''}'>
-                            ${getUISVGSymbol('cook')}
-                        </button>
+                        <div class='fridge-list-item ingredient-list-item-options-main'>
+                            <button 
+                                onClick="fridgeAction('${ingredient.id}', 'delete')">
+                                ${getUISVGSymbol('delete')}
+                            </button>
+                            <button
+                                class='${ingredient.grocery ? 'grocery' : ''} ${ingredient.carted ? 'carted' : ''}'
+                                onClick="${(ingredient.carted) ? `fridgeAction('${ingredient.id}', 'carted')` : `fridgeAction('${ingredient.id}', 'grocery')`} ">
+                                ${(ingredient.carted) ? getUISVGSymbol('carted') : getUISVGSymbol('grocery')}
+                            </button>
+                            <button 
+                                onClick="fridgeAction('${ingredient.id}', 'available')"
+                                class='${!ingredient.available ? 'unavailable' : ''}'>
+                                ${getUISVGSymbol('fridge')}
+                            </button>
+                            <button 
+                                onClick="${!ingredient.available ? '' : `fridgeAction('${ingredient.id}', 'cook')`}"
+                                class='cook ${!ingredient.available ? 'unavailable' : ''} ${ingredient.cook ? 'cooking': ''}'>
+                                ${getUISVGSymbol('cook')}
+                            </button>
+                        </div>
 
                         <div class='ingredient-list-item-options-nested' id='delete-option-id-${ingredient.id}'>
                             <button 
@@ -1634,20 +1636,19 @@ function updateGroceryListDisplay(){
                         >
                     </div>
                     <div class='ingredient-list-item-options'>
-                        <button 
-                            id='grocery-remove-option'
-                            onClick="groceryAction('${grocery.id}', 'remove')"
-                        >
-                            ${getUISVGSymbol('cancel')}
-                        </button>
-                        <button
-                            id='grocery-cart-option'
-                            class='carted'
-                            onClick="groceryAction('${grocery.id}', 'cart')"
-                        >
-                            ${getUISVGSymbol('carted')}
-                        </button>
-
+                        <div class='grocery-list-item ingredient-list-item-options-main'>
+                            <button 
+                                id='grocery-remove-option'
+                                onClick="groceryAction('${grocery.id}', 'remove')">
+                                ${getUISVGSymbol('cancel')}
+                            </button>
+                            <button
+                                id='grocery-cart-option'
+                                class='carted'
+                                onClick="groceryAction('${grocery.id}', 'cart')">
+                                ${getUISVGSymbol('carted')}
+                            </button>
+                        </div>
                         <div class='ingredient-list-item-options-nested' id='grocery-remove-options-id-${grocery.id}'>
                             <button 
                                 class='denial' 
@@ -1706,21 +1707,20 @@ function updateGroceryListDisplay(){
                         >
                     </div>
                     <div class='ingredient-list-item-options'>
-                        <button 
-                            id='grocery-infridge-option'
-                            class='carted'
-                            onClick="groceryAction('${carted.id}', 'decart')"
-                        >
-                            ${getUISVGSymbol('carted')}
-                        </button>
-                        <button
-                            class='${carted.available ? 'available' : ''}'
-                            id='grocery-infridge-option'
-                            onClick="groceryAction('${carted.id}', 'infridge')"
-                        >
-                            ${getUISVGSymbol('fridge')}
-                        </button>
-
+                        <div class='carted-list-item ingredient-list-item-options-main'>
+                            <button 
+                                id='grocery-infridge-option'
+                                class='carted'
+                                onClick="groceryAction('${carted.id}', 'decart')">
+                                ${getUISVGSymbol('carted')}
+                            </button>
+                            <button
+                                class='${carted.available ? 'available' : ''}'
+                                id='grocery-infridge-option'
+                                onClick="groceryAction('${carted.id}', 'infridge')">
+                                ${getUISVGSymbol('fridge')}
+                            </button>
+                        </div>
                         <div class='ingredient-list-item-options-nested' id='grocery-infridge-options-id-${carted.id}'>
                             <button 
                                 class='confirm' 

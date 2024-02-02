@@ -784,10 +784,9 @@ h3 span {
   min-height: 300px;
 }
 .ingredient-list-container .ingredient-list-item {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 150px;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px 0px;
   border-bottom: solid 1px var(--grey_color1);
 }
 .ingredient-list-container .ingredient-list-item:last-child {
@@ -814,62 +813,66 @@ h3 span {
   color: var(--red_color1);
 }
 .ingredient-list-container .ingredient-list-item .ingredient-list-item-options {
-  display: flex;
-  align-items: center;
-  z-index: 2;
   position: relative;
-  width: 143px;
-  z-index: 3;
-  justify-content: end;
-  border: solid 1px red;
-}
-.ingredient-list-container .ingredient-list-item .ingredient-list-item-options button {
-  border: none;
-  background: none;
-  fill: var(--grey_color1);
-  cursor: pointer;
-}
-.ingredient-list-container .ingredient-list-item .ingredient-list-item-options button:first-child {
-  margin-left: 0;
-}
-.ingredient-list-container .ingredient-list-item .ingredient-list-item-options button svg {
   box-sizing: border-box;
+  padding: 10px 0;
+  height: 100%;
+}
+.ingredient-list-container .ingredient-list-item .ingredient-list-item-options .ingredient-list-item-options-main {
+  display: grid;
+}
+.ingredient-list-container .ingredient-list-item .ingredient-list-item-options .ingredient-list-item-options-main button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+.ingredient-list-container .ingredient-list-item .ingredient-list-item-options .ingredient-list-item-options-main button svg {
   width: 20px;
   height: 20px;
 }
-.ingredient-list-container .ingredient-list-item .ingredient-list-item-options .unavailable {
+.ingredient-list-container .ingredient-list-item .ingredient-list-item-options .ingredient-list-item-options-main .unavailable {
   fill: var(--red_color1);
 }
-.ingredient-list-container .ingredient-list-item .ingredient-list-item-options .cooking {
+.ingredient-list-container .ingredient-list-item .ingredient-list-item-options .ingredient-list-item-options-main .cooking {
   fill: var(--orange_color1);
 }
-.ingredient-list-container .ingredient-list-item .ingredient-list-item-options .cook.unavailable {
+.ingredient-list-container .ingredient-list-item .ingredient-list-item-options .ingredient-list-item-options-main .cook.unavailable {
   fill: var(--red_color1);
   cursor: none;
   pointer-events: none;
   touch-action: none !important;
 }
-.ingredient-list-container .ingredient-list-item .ingredient-list-item-options .grocery, .ingredient-list-container .ingredient-list-item .ingredient-list-item-options .available {
+.ingredient-list-container .ingredient-list-item .ingredient-list-item-options .ingredient-list-item-options-main .grocery, .ingredient-list-container .ingredient-list-item .ingredient-list-item-options .ingredient-list-item-options-main .available {
   fill: var(--green_color1);
 }
-.ingredient-list-container .ingredient-list-item .ingredient-list-item-options .carted {
+.ingredient-list-container .ingredient-list-item .ingredient-list-item-options .ingredient-list-item-options-main .carted {
   transform: scale(1.15);
 }
+.ingredient-list-container .ingredient-list-item .ingredient-list-item-options .fridge-list-item.ingredient-list-item-options-main {
+  grid-template-columns: auto auto auto auto;
+}
+.ingredient-list-container .ingredient-list-item .ingredient-list-item-options .grocery-list-item.ingredient-list-item-options-main,
+.ingredient-list-container .ingredient-list-item .ingredient-list-item-options .carted-list-item.ingredient-list-item-options-main {
+  display: flex;
+  justify-content: end;
+}
 .ingredient-list-container .ingredient-list-item .ingredient-list-item-options .ingredient-list-item-options-nested {
-  border: solid 1px blue;
   z-index: 3;
   position: absolute;
   right: 0;
-  box-sizing: content-box;
-  width: 0%;
-  max-width: 143px;
+  top: 0;
   display: none;
+  width: 0%;
   grid-template-columns: auto auto;
+  height: 100%;
 }
 .ingredient-list-container .ingredient-list-item .ingredient-list-item-options .ingredient-list-item-options-nested button {
-  padding: 10px 0px;
-  margin: 0;
-  color: white;
+  cursor: pointer;
+  border: none;
+}
+.ingredient-list-container .ingredient-list-item .ingredient-list-item-options .ingredient-list-item-options-nested button svg {
+  width: 20px;
+  height: 20px;
 }
 .ingredient-list-container .ingredient-list-item .ingredient-list-item-options .ingredient-list-item-options-nested .denial {
   cursor: pointer;
