@@ -818,6 +818,7 @@ h3 span {
   align-items: center;
   z-index: 2;
   position: relative;
+  width: 143px;
   z-index: 3;
   justify-content: end;
 }
@@ -859,6 +860,7 @@ h3 span {
   right: 0;
   box-sizing: content-box;
   width: 0%;
+  max-width: 143px;
   display: none;
   grid-template-columns: auto auto;
 }
