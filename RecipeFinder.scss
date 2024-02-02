@@ -1124,6 +1124,9 @@ h3{
 // ######################################################################################
 
 @media (orientation: landscape){
+    #search-screen-categories{
+        position: relative !important;
+    }
     .ingredient-list-item{
         grid-template-columns: auto 200px !important;
     }
