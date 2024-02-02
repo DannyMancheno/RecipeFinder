@@ -1,6 +1,6 @@
 // Initial setup. 
 $(document).ready(()=>{
-    $('.app-option')[0].click();
+    $('.app-option')[1].click();
     // screen.orientation.lock('portriat');
 })
 
@@ -232,6 +232,7 @@ function updateFridgeIngredientDisplay(){
                             class='cook ${!ingredient.available ? 'unavailable' : ''} ${ingredient.cook ? 'cooking': ''}'>
                             ${getUISVGSymbol('cook')}
                         </button>
+
                         <div class='ingredient-list-item-options-nested' id='delete-option-id-${ingredient.id}'>
                             <button 
                                 class='denial' 
