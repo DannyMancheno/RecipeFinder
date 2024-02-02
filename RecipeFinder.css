@@ -821,6 +821,7 @@ h3 span {
   width: 143px;
   z-index: 3;
   justify-content: end;
+  border: solid 1px red;
 }
 .ingredient-list-container .ingredient-list-item .ingredient-list-item-options button {
   border: none;
@@ -855,6 +856,7 @@ h3 span {
   transform: scale(1.15);
 }
 .ingredient-list-container .ingredient-list-item .ingredient-list-item-options .ingredient-list-item-options-nested {
+  border: solid 1px blue;
   z-index: 3;
   position: absolute;
   right: 0;
