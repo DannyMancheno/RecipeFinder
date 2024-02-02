@@ -835,15 +835,9 @@ h3{
     min-height: 300px;    
     .ingredient-list-item{
         display: grid;
-        grid-template-columns: auto 150px;
+        grid-template-columns: auto 120px;
         align-items: center;
         border-bottom: solid 1px var(--grey_color1);
-
-        // border: solid 1px red;
-        // *{
-        //     border: solid 1px red;
-        // }
-
         &:last-child{
             border-bottom: none;
         }
@@ -873,12 +867,15 @@ h3{
             box-sizing: border-box;
             padding: 10px 0;
             height: 100%;
+            border: solid 1px red;
             .ingredient-list-item-options-main{
                 display: grid;
+                border: solid 1px blue;
                 button{
                     cursor: pointer;
                     background: none;
                     border: none;
+                    border: solid 1px green;
                     svg{
                         width: 20px;
                         height: 20px;
@@ -952,48 +949,6 @@ h3{
                     }
                 }
             }
-           
-            
-            // .ingredient-list-item-options-nested{
-            //     border: solid 1px blue;
-            //     z-index: 3;
-            //     position: absolute;
-            //     right: 0;
-            //     box-sizing: content-box;
-            //     width: 0%;
-            //     max-width: 143px;
-            //     display: none;
-            //     grid-template-columns: auto auto;
-                
-            //     button{
-            //         padding: 10px 0px;
-            //         margin: 0;
-            //         color: white;
-            //     }
-            //     .denial{
-            //         cursor: pointer;
-            //         fill: white;
-            //         background: rgb(231, 0, 0);
-            //         &:hover{
-            //             background: red;
-            //         }
-            //     }
-            //     .confirm{
-            //         cursor: pointer;
-            //         fill: white;
-            //         background: rgb(0, 152, 0);
-            //         &:hover{
-            //             background: rgb(0, 177, 0);
-            //         }
-            //     }
-            //     .cancel{
-            //         cursor: pointer;
-            //         background: rgb(235, 235, 235);
-            //         &:hover{
-            //             background: rgb(242, 242, 242);
-            //         }
-            //     }
-            // }
         }
     }
 }
@@ -1151,11 +1106,8 @@ h3{
 // ######################################################################################
 
 @media (orientation: landscape){
-    #app-container{
-        background: none;
-    }
     .recipe-container{
-        // border: solid 2px red;
+        
         .recipe-image{
             border-radius: 6px;
             max-height: 210px;
