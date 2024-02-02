@@ -785,7 +785,7 @@ h3 span {
 }
 .ingredient-list-container .ingredient-list-item {
   display: grid;
-  grid-template-columns: auto 140px;
+  grid-template-columns: auto 150px;
   align-items: center;
   border-bottom: solid 1px var(--grey_color1);
 }
@@ -859,6 +859,10 @@ h3 span {
   display: flex;
   justify-content: end;
 }
+.ingredient-list-container .ingredient-list-item .ingredient-list-item-options .grocery-list-item.ingredient-list-item-options-main button,
+.ingredient-list-container .ingredient-list-item .ingredient-list-item-options .carted-list-item.ingredient-list-item-options-main button {
+  margin-left: 10px;
+}
 .ingredient-list-container .ingredient-list-item .ingredient-list-item-options .ingredient-list-item-options-nested {
   z-index: 3;
   position: absolute;
@@ -868,10 +872,12 @@ h3 span {
   width: 0%;
   grid-template-columns: auto auto;
   height: 100%;
+  align-items: center;
 }
 .ingredient-list-container .ingredient-list-item .ingredient-list-item-options .ingredient-list-item-options-nested button {
   cursor: pointer;
   border: none;
+  padding: 5px 0;
 }
 .ingredient-list-container .ingredient-list-item .ingredient-list-item-options .ingredient-list-item-options-nested button svg {
   width: 20px;
@@ -983,6 +989,18 @@ h3 span {
   }
 }
 @media (min-width: 800px) {
+  .ingredient-list-item {
+    grid-template-columns: auto 200px !important;
+  }
+  .grocery-list-item.ingredient-list-item-options-main,
+  .carted-list-item.ingredient-list-item-options-main {
+    display: flex;
+    justify-content: end;
+  }
+  .grocery-list-item.ingredient-list-item-options-main button,
+  .carted-list-item.ingredient-list-item-options-main button {
+    margin-left: 20px !important;
+  }
   #calories-range-container {
     flex-direction: column;
     align-items: start;
@@ -1032,6 +1050,18 @@ h3 span {
   }
 }
 @media (orientation: landscape) {
+  .ingredient-list-item {
+    grid-template-columns: auto 200px !important;
+  }
+  .grocery-list-item.ingredient-list-item-options-main,
+  .carted-list-item.ingredient-list-item-options-main {
+    display: flex;
+    justify-content: end;
+  }
+  .grocery-list-item.ingredient-list-item-options-main button,
+  .carted-list-item.ingredient-list-item-options-main button {
+    margin-left: 20px !important;
+  }
   .recipe-container .recipe-image {
     border-radius: 6px;
     max-height: 210px;
