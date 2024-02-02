@@ -910,7 +910,8 @@ h3{
                 box-sizing: content-box;
                 width: 0%;
                 display: none;
-                grid-template-columns: 65% auto;
+                grid-template-columns: auto auto;
+                
                 button{
                     padding: 10px 0px;
                     margin: 0;

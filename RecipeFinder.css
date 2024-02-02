@@ -861,7 +861,7 @@ h3 span {
   box-sizing: content-box;
   width: 0%;
   display: none;
-  grid-template-columns: 65% auto;
+  grid-template-columns: auto auto;
 }
 .ingredient-list-container .ingredient-list-item .ingredient-list-item-options .ingredient-list-item-options-nested button {
   padding: 10px 0px;
