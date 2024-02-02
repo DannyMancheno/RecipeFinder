@@ -1,6 +1,6 @@
 // Initial setup. 
 $(document).ready(()=>{
-    $('.app-option')[2].click();
+    $('.app-option')[1].click();
     // screen.orientation.lock('portriat');
 })
 

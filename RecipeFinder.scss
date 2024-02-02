@@ -860,22 +860,24 @@ h3{
                 opacity: 0.75;
                 color: var(--red_color1);
             }
-            
         }
         .ingredient-list-item-options{
             position: relative;
             box-sizing: border-box;
             padding: 10px 0;
             height: 100%;
-            border: solid 1px red;
+            // border: solid 1px red;
             .ingredient-list-item-options-main{
                 display: grid;
-                border: solid 1px blue;
+                justify-items: center;
+                // border: solid 1px blue;
                 button{
                     cursor: pointer;
                     background: none;
                     border: none;
-                    border: solid 1px green;
+                    // border: solid 1px green;
+                    padding: none;
+                    min-width: 0;
                     svg{
                         width: 20px;
                         height: 20px;

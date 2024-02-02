@@ -817,17 +817,17 @@ h3 span {
   box-sizing: border-box;
   padding: 10px 0;
   height: 100%;
-  border: solid 1px red;
 }
 .ingredient-list-container .ingredient-list-item .ingredient-list-item-options .ingredient-list-item-options-main {
   display: grid;
-  border: solid 1px blue;
+  justify-items: center;
 }
 .ingredient-list-container .ingredient-list-item .ingredient-list-item-options .ingredient-list-item-options-main button {
   cursor: pointer;
   background: none;
   border: none;
-  border: solid 1px green;
+  padding: none;
+  min-width: 0;
 }
 .ingredient-list-container .ingredient-list-item .ingredient-list-item-options .ingredient-list-item-options-main button svg {
   width: 20px;
