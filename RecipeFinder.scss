@@ -1086,6 +1086,9 @@ h3{
     
 }
 @media (min-width: 800px){
+    #fridge-cooking-recipes-list > .recipe-container{
+        max-width: 360px;
+    }
     .ingredient-list-item{
         grid-template-columns: auto 200px !important;
     }
@@ -1141,9 +1144,7 @@ h3{
 }
 
 @media (min-width: 1180px){
-    #fridge-cooking-recipes-list > .recipe-container{
-        max-width: 320px;
-    }
+
     .recipe-container{
         max-width: 270px;
     }
