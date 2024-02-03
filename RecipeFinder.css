@@ -1071,6 +1071,9 @@ h3 span {
   }
 }
 @media (min-width: 1180px) {
+  #fridge-cooking-recipes-list > .recipe-container {
+    max-width: 320px;
+  }
   .recipe-container {
     max-width: 270px;
   }

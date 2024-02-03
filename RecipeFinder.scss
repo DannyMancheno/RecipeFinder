@@ -430,6 +430,7 @@ body{
         display: flex;
         justify-content: space-evenly;
         width: 100%;
+    
     }
 }
 #fridge-cook-recipe-container{
@@ -1140,6 +1141,9 @@ h3{
 }
 
 @media (min-width: 1180px){
+    #fridge-cooking-recipes-list > .recipe-container{
+        max-width: 320px;
+    }
     .recipe-container{
         max-width: 270px;
     }
