@@ -105,7 +105,7 @@ body #app-container #app-options #app-option-buttons-container #fridge-cook-reci
   right: -5px;
   background: var(--orange_color1);
   border-radius: 30px;
-  border: solid 3px white;
+  border: solid 2px white;
 }
 body #app-container #app-options #app-option-buttons-container #fridge-cook-recipe-badge svg {
   fill: white;
@@ -126,8 +126,9 @@ body #app-container #app-options #app-option-buttons-container #grocery-list-app
   right: -5px;
   background: var(--green_color1);
   color: white;
-  border: solid 3px white;
+  border: solid 2px white;
   border-radius: 30px;
+  font-size: 15px;
 }
 @keyframes app-option-hovered {
   from {
