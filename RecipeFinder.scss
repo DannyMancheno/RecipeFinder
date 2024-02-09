@@ -44,10 +44,7 @@ body{
         z-index: 1;
         min-height: 1000px;
         max-width: 1200px;
-        margin: auto;
-
-        
-        
+        margin: auto;        
         #app-options, #app-screens, #app-bottom{
             padding: 0 3%;
         }
@@ -1159,6 +1156,9 @@ h3{
 // ######################################################################################
 
 @media (orientation: landscape) and (hover: none) and (pointer: coarse) {
+    #search-screen-categories{
+        position: relative !important;
+    }
     .dialog-box-recipe-container{
         display: grid;
         grid-template-columns: 50% 50%;
@@ -1188,9 +1188,7 @@ h3{
 }
 
 @media (orientation: landscape){
-    #search-screen-categories{
-        position: relative !important;
-    }
+
     .ingredient-list-item{
         grid-template-columns: auto 200px !important;
     }
